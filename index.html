@@ -297,6 +297,14 @@
   .feature {
     display: flex;
     align-items: center;
+    /* .features is stretched to a fixed width (needed so long labels wrap
+       instead of overflowing), but that left every SHORT row packed to
+       the left edge with empty space on the right — icon+label as a pair
+       weren't centered under the badge/headline above them the way every
+       other element in the circle is. Centering the pair as a unit fixes
+       that; text-align:left is kept so a label that *does* wrap to two
+       lines still reads left-aligned internally, not centered per line. */
+    justify-content: center;
     gap: 12px;
     text-align: left;
   }
