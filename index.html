@@ -143,7 +143,6 @@
   body[data-stage="3"] .orb {
     width: 320vmax;
     height: 320vmax;
-    background-color: var(--primary);
     box-shadow: none;
     animation: none;
   }
@@ -178,9 +177,6 @@
     transition: box-shadow 0.6s ease;
   }
   .badge img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .orb-content--3 .badge {
-    box-shadow: 0 0 0 4px rgba(255,255,255,0.9), 0 6px 18px rgba(0,0,0,0.18);
-  }
   .orb-content {
     position: absolute;
     inset: 0;
@@ -217,7 +213,6 @@
     opacity: 1;
     transition: opacity 0.5s ease;
   }
-  body[data-stage="3"] h1.wordmark { opacity: 0; }
   /* Matches the app's actual brand mark (lib/core/widgets/brand_logo.dart):
      the second "C" in ConnCT is horizontally mirrored, not a plain letter. */
   .wordmark .mirror-c {
@@ -290,21 +285,20 @@
     line-height: 1.35;
   }
 
-  .orb-content--3 { color: #fff; }
-  .orb-content--3 h2 { color: #fff; max-width: 320px; }
-  .orb-content--3 p.lede { color: rgba(255,255,255,0.85); max-width: 300px; margin-bottom: 26px; }
+  .orb-content--3 h2 { max-width: 320px; }
+  .orb-content--3 p.lede { max-width: 300px; margin-bottom: 26px; }
   .cta-btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: #ffffff;
-    color: var(--primary);
+    background: var(--primary);
+    color: #ffffff;
     font-weight: 700;
     font-size: 15.5px;
     padding: 15px 28px;
     border-radius: 100px;
     text-decoration: none;
-    box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+    box-shadow: 0 14px 30px rgba(10,124,255,0.32);
     transition: transform 0.15s ease;
   }
   .cta-btn:active { transform: scale(0.96); }
@@ -385,16 +379,11 @@
   var current = 0;
   var hints = ['Tap to explore', 'See what’s inside', 'Get started'];
   var dots = document.querySelectorAll('.progress span');
-  var themeColorMeta = document.getElementById('themeColorMeta');
 
   function render() {
     document.body.setAttribute('data-stage', String(current));
     dots.forEach(function (d, i) { d.classList.toggle('done', i <= current); });
     document.getElementById('hintText').textContent = hints[current] || '';
-    // Keep the mobile browser chrome color matching the actual page
-    // background at this stage (white for 0-2, brand blue once the orb
-    // fills the screen at stage 3) instead of a static, sometimes-wrong tag.
-    themeColorMeta.setAttribute('content', current === maxStage ? '#0A7CFF' : '#ffffff');
   }
   function advance(e) {
     current = current < maxStage ? current + 1 : 0;
