@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>ConnCT — Professional Networking for India</title>
 <meta property="og:title" content="ConnCT — Professional Networking for India">
-<meta property="og:description" content="The verified professional network for India's CAs, Company Secretaries, Advocates, and more.">
+<meta property="og:description" content="The verified professional network for India's CAs, CS, CMAs, Advocates, and more.">
 <meta property="og:image" content="https://connct.in/assets/logo.png">
-<meta name="description" content="ConnCT is the verified professional network built for India's Chartered Accountants, Company Secretaries, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers.">
+<meta name="description" content="ConnCT is the verified professional network built for India's Chartered Accountants, Company Secretaries, Cost & Management Accountants, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers.">
 <link rel="icon" href="/assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +97,16 @@
       background-color 0.9s ease;
     animation: breathe 3.6s ease-in-out infinite;
     z-index: 5;
-    overflow: hidden;
+    /* Deliberately NOT overflow:hidden here — a circle is a bad container
+       for variable-length text, and clipping it silently cuts words off
+       mid-sentence (found live: "actually" rendering as "ually"). The
+       circular *shape* still comes from border-radius on this element's
+       own background regardless of overflow; only .orb-logo below needs
+       its own overflow:hidden, to crop the square logo image into a
+       circle. If content ever runs long, it now spills onto the page's
+       own white background past the circle's edge instead of vanishing —
+       on a white-on-white page that's a minor cosmetic edge case, not
+       lost content. */
   }
   @keyframes breathe {
     0%, 100% { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 24px 60px -12px rgba(10,124,255,0.22), inset 0 0 0 1px rgba(0,0,0,0.045); }
@@ -128,8 +137,8 @@
   }
   body:not([data-stage="0"]) .ripple { display: none; }
 
-  body[data-stage="1"] .orb { width: min(420px, 88vw); height: min(420px, 88vw); animation: none; }
-  body[data-stage="2"] .orb { width: min(520px, 92vw); height: min(520px, 92vw); animation: none; }
+  body[data-stage="1"] .orb { width: min(460px, 88vw, 82vh); height: min(460px, 88vw, 82vh); animation: none; }
+  body[data-stage="2"] .orb { width: min(540px, 92vw, 88vh); height: min(540px, 92vw, 88vh); animation: none; }
   body[data-stage="3"] .orb {
     width: 320vmax;
     height: 320vmax;
@@ -148,6 +157,8 @@
   .orb-logo {
     position: absolute;
     inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
     opacity: 1;
     transition: opacity 0.5s ease;
     z-index: 2;
@@ -343,8 +354,8 @@
     <div class="orb-content orb-content--1">
       <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
       <p class="eyebrow">Why we built this</p>
-      <h2>Every network treats a CA like <span class="accent">anyone else.</span> We didn't think that was right.</h2>
-      <p class="lede">ConnCT verifies real credentials for India's CAs, Company Secretaries, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers — so a verified badge here actually means something.</p>
+      <h2>Every network treats your credential like a <span class="accent">self-reported title.</span> We didn't think that was right.</h2>
+      <p class="lede">ConnCT verifies real credentials for India's CAs, Company Secretaries, CMAs, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers — so a verified badge here actually means something.</p>
     </div>
 
     <div class="orb-content orb-content--2">
