@@ -113,15 +113,40 @@
     animation: none;
   }
 
+  /* Stage-0-only: the logo fills the whole (small) orb. It fades out as
+     the orb starts growing — replaced by the small badge below, which is
+     laid out as part of each stage's own centered content instead of
+     positioned separately, so it stays correctly centered no matter how
+     large the orb grows (including stage 3, where the orb is bigger than
+     the viewport and its own top-left corner is off-screen — anything
+     positioned relative to *that* edge would end up invisible). */
   .orb-logo {
     position: absolute;
     inset: 0;
     opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.55s ease, transform 0.7s var(--spring);
+    transition: opacity 0.5s ease;
+    z-index: 2;
   }
   .orb-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  body:not([data-stage="0"]) .orb-logo { opacity: 0; transform: scale(1.15); pointer-events: none; }
+  body:not([data-stage="0"]) .orb-logo { opacity: 0; pointer-events: none; }
+
+  .badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(255,255,255,0);
+    transition: box-shadow 0.6s ease;
+  }
+  .badge img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .orb-content--3 .badge {
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.9), 0 6px 18px rgba(0,0,0,0.18);
+  }
+  /* Stage 2 packs the most content (5 feature rows) — a smaller badge
+     buys back a little vertical room without disappearing. */
+  .orb-content--2 .badge { width: 40px; height: 40px; margin-bottom: 14px; }
 
   .orb-content {
     position: absolute;
@@ -289,12 +314,14 @@
     <div class="orb-logo"><img src="/assets/logo.png" alt="ConnCT logo"></div>
 
     <div class="orb-content orb-content--1">
+      <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
       <p class="eyebrow">Built for a real profession</p>
       <h2>A network <span class="accent">verified</span> professionals actually trust</h2>
       <p class="lede">Built exclusively for CAs, Company Secretaries, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers — every badge means a real credential was checked.</p>
     </div>
 
     <div class="orb-content orb-content--2">
+      <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
       <p class="eyebrow">What's inside</p>
       <div class="features">
         <div class="feature"><div class="icon">🤝</div><div class="label">Connect with verified peers in your profession</div></div>
@@ -306,6 +333,7 @@
     </div>
 
     <div class="orb-content orb-content--3">
+      <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
       <h2>Join ConnCT today</h2>
       <p class="lede">Download the app and build your professional future.</p>
       <a class="cta-btn" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" onclick="event.stopPropagation()">
