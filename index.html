@@ -57,6 +57,29 @@
   }
   body[data-stage="3"] .glow { opacity: 0; }
 
+  /* Ambient background accents — fill the empty space around the circle
+     on wide viewports with soft blurred color, matching .glow's existing
+     treatment, rather than literal UI chrome (grid lines, cards) that
+     would clash with the page's restrained look. Hidden on narrow
+     viewports (little space to spare there) and at stage 3, once the
+     orb itself fills the screen. */
+  .accent-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.8s ease;
+    animation: drift 15s ease-in-out infinite alternate;
+  }
+  .accent-blob--1 { width: 340px; height: 340px; background: rgba(10,124,255,0.16); top: 8%; left: -7%; }
+  .accent-blob--2 { width: 300px; height: 300px; background: rgba(10,124,255,0.12); bottom: 6%; right: -6%; animation-delay: -7s; }
+  @keyframes drift { 0% { transform: translate(0, 0); } 100% { transform: translate(26px, -20px); } }
+  @media (max-width: 900px) { .accent-blob { display: none; } }
+  body[data-stage="3"] .accent-blob { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) { .accent-blob { animation: none; } }
+
   .progress {
     position: fixed;
     top: 30px;
@@ -225,7 +248,10 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--primary);
+    /* primary-dark, not primary — plain --primary on white is only ~3.9:1
+       contrast, below the 4.5:1 small bold text needs; primary-dark clears
+       6.4:1 while staying the same blue family. */
+    color: var(--primary-dark);
     margin: 0 0 12px;
   }
   h2 {
@@ -291,7 +317,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: var(--primary);
+    background: var(--primary-dark);
     color: #ffffff;
     font-weight: 700;
     font-size: 15.5px;
@@ -303,32 +329,44 @@
   }
   .cta-btn:active { transform: scale(0.96); }
 
+  /* A real, solid tappable button now — not just a low-contrast hint —
+     though the whole orb still advances on tap too; this is an explicit
+     affordance layered on top of that, not a replacement for it. */
   .hint {
     position: fixed;
-    bottom: 60px;
+    bottom: 56px;
     left: 0;
     right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    font-size: 12.5px;
-    color: var(--text-light);
-    font-weight: 600;
-    letter-spacing: 0.02em;
     z-index: 15;
-    animation: pulse 2.4s ease-in-out infinite;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease, transform 0.15s ease;
   }
-  @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  .hint-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-dark);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    padding: 13px 24px;
+    border-radius: 100px;
+    box-shadow: 0 10px 24px rgba(10,124,255,0.3);
+  }
+  .hint:active { transform: scale(0.96); }
   .hint svg { width: 13px; height: 13px; }
-  body[data-stage="3"] .hint { opacity: 0; }
+  body[data-stage="3"] .hint { opacity: 0; pointer-events: none; }
 
 </style>
 </head>
 <body data-stage="0">
 
   <div class="glow"></div>
+  <div class="accent-blob accent-blob--1"></div>
+  <div class="accent-blob accent-blob--2"></div>
   <h1 class="wordmark">Conn<span class="mirror-c">C</span>T</h1>
 
   <div class="progress" id="progress">
@@ -370,8 +408,10 @@
   </div>
 
   <div class="hint" onclick="advance(event)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
-    <span id="hintText">Tap to explore</span>
+    <span class="hint-inner">
+      <span id="hintText">Tap to explore</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+    </span>
   </div>
 
 <script>
