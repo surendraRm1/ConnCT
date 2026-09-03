@@ -55,15 +55,17 @@
     user-select: none;
   }
 
-  /* Ambient glow behind the orb — brighter and bluer than a bare hint of
-     color, closer to a studio backlight than a flat white page. Only the
-     part of this gradient *outside* the orb's own edge is ever visible
-     (the orb sits on top and is opaque), so what reads is a bright halo
-     hugging the circle rather than a general haze. */
+  /* Ambient glow behind the orb — a tight halo hugging the circle, not a
+     wash across the page. Rendered this myself (headless-Chrome
+     screenshots) after the previous version — 0.30 peak fading out only
+     at 66% of farthest-corner — turned out to visibly tint almost the
+     entire viewport blue on every stage, which read as "dull/blue page"
+     rather than "shiny circle". Pulling the falloff in to 40% keeps the
+     brightness close to the edge where it actually reads as a highlight. */
   .glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 46%, rgba(10,124,255,0.30), rgba(10,124,255,0.10) 40%, rgba(10,124,255,0) 66%);
+    background: radial-gradient(circle at 50% 46%, rgba(10,124,255,0.22), rgba(10,124,255,0.07) 22%, rgba(10,124,255,0) 40%);
     transition: opacity 1.1s ease;
     pointer-events: none;
   }
@@ -307,24 +309,34 @@
   }
   p.lede--2 { margin-bottom: 22px; max-width: 300px; }
 
+  /* Two things had to be true at once here, and they pull in opposite
+     directions: (1) the whole feature list, as a block, needs to be
+     centered under the badge/headline like everything else in the
+     circle, and (2) every row's icon needs to sit at the SAME x position
+     as every other row's icon, like a normal checklist — not each row
+     independently centered based on its own width. A previous fix only
+     solved (1) (justify-content:center per row), which visibly broke
+     (2): a short one-line row centers to a different x than a longer
+     two-line row sitting right above it, producing a zigzag icon column
+     (caught by actually rendering the page and looking, not guessing).
+     The fix: let .features shrink-wrap to its widest row (width:
+     fit-content) so IT centers as one unit under the headline, while
+     rows inside it left-align to a common edge (align-items:flex-start)
+     instead of each centering independently. Wrapping still has to work
+     for long labels even though rows no longer stretch to a shared
+     width, so it's now enforced directly on .label's own max-width
+     instead of relying on the row being stretched. */
   .features {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
-    width: 100%;
+    width: fit-content;
     max-width: 340px;
   }
   .feature {
     display: flex;
     align-items: center;
-    /* .features is stretched to a fixed width (needed so long labels wrap
-       instead of overflowing), but that left every SHORT row packed to
-       the left edge with empty space on the right — icon+label as a pair
-       weren't centered under the badge/headline above them the way every
-       other element in the circle is. Centering the pair as a unit fixes
-       that; text-align:left is kept so a label that *does* wrap to two
-       lines still reads left-aligned internally, not centered per line. */
-    justify-content: center;
     gap: 12px;
     text-align: left;
   }
@@ -340,6 +352,7 @@
     font-size: 15px;
   }
   .feature .label {
+    max-width: 296px; /* 340 - icon(32) - gap(12); independent of row stretch now */
     font-size: 13px;
     font-weight: 600;
     color: var(--text-dark);
