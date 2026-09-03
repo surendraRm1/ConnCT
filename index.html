@@ -55,13 +55,13 @@
     transition: opacity 1.1s ease;
     pointer-events: none;
   }
-  body[data-stage="3"] .glow { opacity: 0; }
+  body[data-stage="5"] .glow { opacity: 0; }
 
   /* Ambient background accents — fill the empty space around the circle
      on wide viewports with soft blurred color, matching .glow's existing
      treatment, rather than literal UI chrome (grid lines, cards) that
      would clash with the page's restrained look. Hidden on narrow
-     viewports (little space to spare there) and at stage 3, once the
+     viewports (little space to spare there) and at stage 5, once the
      orb itself fills the screen. */
   .accent-blob {
     position: fixed;
@@ -77,7 +77,7 @@
   .accent-blob--2 { width: 300px; height: 300px; background: rgba(10,124,255,0.12); bottom: 6%; right: -6%; animation-delay: -7s; }
   @keyframes drift { 0% { transform: translate(0, 0); } 100% { transform: translate(26px, -20px); } }
   @media (max-width: 900px) { .accent-blob { display: none; } }
-  body[data-stage="3"] .accent-blob { opacity: 0; }
+  body[data-stage="5"] .accent-blob { opacity: 0; }
   @media (prefers-reduced-motion: reduce) { .accent-blob { animation: none; } }
 
   .progress {
@@ -98,7 +98,7 @@
     transition: background 0.4s ease, transform 0.4s var(--spring);
   }
   .progress span.done { background: var(--primary); transform: scale(1.15); }
-  body[data-stage="3"] .progress { opacity: 0; pointer-events: none; }
+  body[data-stage="5"] .progress { opacity: 0; pointer-events: none; }
 
   /* ── The orb — the whole interaction lives here ─────────────────── */
   .orb {
@@ -161,9 +161,14 @@
   }
   body:not([data-stage="0"]) .ripple { display: none; }
 
+  /* Each stage's circle grows a little more than the last — a deliberate
+     "opens into a bigger circle" progression through the whole story,
+     ending with stage 5 filling the screen for the final CTA. */
   body[data-stage="1"] .orb { width: min(460px, 88vw, 82vh); height: min(460px, 88vw, 82vh); animation: none; }
-  body[data-stage="2"] .orb { width: min(540px, 92vw, 88vh); height: min(540px, 92vw, 88vh); animation: none; }
-  body[data-stage="3"] .orb {
+  body[data-stage="2"] .orb { width: min(520px, 90vw, 85vh); height: min(520px, 90vw, 85vh); animation: none; }
+  body[data-stage="3"] .orb { width: min(580px, 92vw, 88vh); height: min(580px, 92vw, 88vh); animation: none; }
+  body[data-stage="4"] .orb { width: min(640px, 94vw, 90vh); height: min(640px, 94vw, 90vh); animation: none; }
+  body[data-stage="5"] .orb {
     width: 320vmax;
     height: 320vmax;
     box-shadow: none;
@@ -174,7 +179,7 @@
      the orb starts growing — replaced by the small badge below, which is
      laid out as part of each stage's own centered content instead of
      positioned separately, so it stays correctly centered no matter how
-     large the orb grows (including stage 3, where the orb is bigger than
+     large the orb grows (including stage 5, where the orb is bigger than
      the viewport and its own top-left corner is off-screen — anything
      positioned relative to *that* edge would end up invisible). */
   .orb-logo {
@@ -215,7 +220,9 @@
   }
   body[data-stage="1"] .orb-content--1,
   body[data-stage="2"] .orb-content--2,
-  body[data-stage="3"] .orb-content--3 {
+  body[data-stage="3"] .orb-content--3,
+  body[data-stage="4"] .orb-content--4,
+  body[data-stage="5"] .orb-content--5 {
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: auto;
@@ -311,8 +318,8 @@
     line-height: 1.35;
   }
 
-  .orb-content--3 h2 { max-width: 320px; }
-  .orb-content--3 p.lede { max-width: 300px; margin-bottom: 26px; }
+  .orb-content--5 h2 { max-width: 320px; }
+  .orb-content--5 p.lede { max-width: 300px; margin-bottom: 26px; }
   .cta-btn {
     display: inline-flex;
     align-items: center;
@@ -358,7 +365,7 @@
   }
   .hint:active { transform: scale(0.96); }
   .hint svg { width: 13px; height: 13px; }
-  body[data-stage="3"] .hint { opacity: 0; pointer-events: none; }
+  body[data-stage="5"] .hint { opacity: 0; pointer-events: none; }
 
 </style>
 </head>
@@ -370,7 +377,7 @@
   <h1 class="wordmark">Conn<span class="mirror-c">C</span>T</h1>
 
   <div class="progress" id="progress">
-    <span data-i="0"></span><span data-i="1"></span><span data-i="2"></span><span data-i="3"></span>
+    <span data-i="0"></span><span data-i="1"></span><span data-i="2"></span><span data-i="3"></span><span data-i="4"></span><span data-i="5"></span>
   </div>
 
   <div class="ripple"></div><div class="ripple"></div><div class="ripple"></div>
@@ -387,16 +394,38 @@
 
     <div class="orb-content orb-content--2">
       <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
-      <p class="eyebrow">What's inside</p>
-      <p class="lede lede--2">Not a generic feed — everything here is built around your professional life.</p>
+      <p class="eyebrow">Connect &amp; get hired</p>
+      <p class="lede lede--2">Every profile is checked — so every connection and every hire is one you can trust.</p>
       <div class="features">
         <div class="feature"><div class="icon">🤝</div><div class="label">Connect with verified peers in your profession</div></div>
-        <div class="feature"><div class="icon">🧾</div><div class="label">Ask the AI Tax Assistant for instant compliance answers</div></div>
-        <div class="feature"><div class="icon">📅</div><div class="label">Track real ITR, GST &amp; MCA filing deadlines</div></div>
+        <div class="feature"><div class="icon">🔍</div><div class="label">Find and hire the right professional in minutes</div></div>
+        <div class="feature"><div class="icon">💼</div><div class="label">Get notified the moment a matching job opens</div></div>
       </div>
     </div>
 
     <div class="orb-content orb-content--3">
+      <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
+      <p class="eyebrow">Work smarter</p>
+      <p class="lede lede--2">The tools you actually reach for during the workday, built right in.</p>
+      <div class="features">
+        <div class="feature"><div class="icon">🧾</div><div class="label">Ask the AI Tax Assistant for instant compliance answers</div></div>
+        <div class="feature"><div class="icon">🧮</div><div class="label">Calculate tax liability in seconds, no spreadsheet needed</div></div>
+        <div class="feature"><div class="icon">📅</div><div class="label">Track real ITR, GST &amp; MCA filing deadlines</div></div>
+      </div>
+    </div>
+
+    <div class="orb-content orb-content--4">
+      <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
+      <p class="eyebrow">Keep growing</p>
+      <p class="lede lede--2">Learning, visibility, and community — all part of the same network.</p>
+      <div class="features">
+        <div class="feature"><div class="icon">🎓</div><div class="label">Earn CPE-ready certificates from the Learning Hub</div></div>
+        <div class="feature"><div class="icon">📰</div><div class="label">Publish articles that build your professional reputation</div></div>
+        <div class="feature"><div class="icon">🗓️</div><div class="label">Join events and groups built for your profession</div></div>
+      </div>
+    </div>
+
+    <div class="orb-content orb-content--5">
       <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
       <h2>Join ConnCT today</h2>
       <p class="lede">Download the app and build your professional future.</p>
@@ -415,9 +444,9 @@
   </div>
 
 <script>
-  var maxStage = 3;
+  var maxStage = 5;
   var current = 0;
-  var hints = ['Tap to explore', 'See what’s inside', 'Get started'];
+  var hints = ['Tap to explore', 'See what’s inside', 'See how it helps', 'Keep exploring', 'Get started'];
   var dots = document.querySelectorAll('.progress span');
 
   function render() {
