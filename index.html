@@ -165,8 +165,8 @@
      "opens into a bigger circle" progression through the whole story,
      ending with stage 5 filling the screen for the final CTA. */
   body[data-stage="1"] .orb { width: min(460px, 88vw, 82vh); height: min(460px, 88vw, 82vh); animation: none; }
-  body[data-stage="2"] .orb { width: min(520px, 90vw, 85vh); height: min(520px, 90vw, 85vh); animation: none; }
-  body[data-stage="3"] .orb { width: min(580px, 92vw, 88vh); height: min(580px, 92vw, 88vh); animation: none; }
+  body[data-stage="2"] .orb { width: min(560px, 90vw, 85vh); height: min(560px, 90vw, 85vh); animation: none; }
+  body[data-stage="3"] .orb { width: min(600px, 92vw, 88vh); height: min(600px, 92vw, 88vh); animation: none; }
   body[data-stage="4"] .orb { width: min(640px, 94vw, 90vh); height: min(640px, 94vw, 90vh); animation: none; }
   body[data-stage="5"] .orb {
     width: 320vmax;
@@ -344,20 +344,17 @@
   }
   .cta-btn:active { transform: scale(0.96); }
 
-  /* A real, solid tappable button now — not just a low-contrast hint —
-     though the whole orb still advances on tap too; this is an explicit
-     affordance layered on top of that, not a replacement for it. */
-  .hint {
-    position: fixed;
-    bottom: 56px;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 15;
-    transition: opacity 0.4s ease, transform 0.15s ease;
-  }
+  /* The pill button itself — reused in two places: as the fixed stage-0
+     prompt below the small splash logo (wrapped in .hint, since there's
+     no content card yet to belong to), and as an in-flow "next" button
+     inside each stage's own .orb-content on stages 1-4. Making it part
+     of the actual content flow (not a second fixed-position element)
+     is deliberate — a fixed-position button's gap to the content above
+     it was accidental, not designed: it varied from ~49px to ~120px
+     between slides purely because slides have different numbers of
+     features, which reads as unpolished. As a real flex child with a
+     fixed margin-top, the gap is now identical everywhere by
+     construction. */
   .hint-inner {
     display: inline-flex;
     align-items: center;
@@ -370,10 +367,24 @@
     padding: 13px 24px;
     border-radius: 100px;
     box-shadow: 0 10px 24px rgba(10,124,255,0.3);
+    transition: transform 0.15s ease;
   }
-  .hint:active { transform: scale(0.96); }
-  .hint svg { width: 13px; height: 13px; }
-  body[data-stage="5"] .hint { opacity: 0; pointer-events: none; }
+  .hint-inner:active { transform: scale(0.96); }
+  .hint-inner svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .next-cta { margin-top: 28px; }
+
+  .hint {
+    position: fixed;
+    bottom: 56px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+    transition: opacity 0.4s ease;
+  }
+  body:not([data-stage="0"]) .hint { opacity: 0; pointer-events: none; }
 
 </style>
 </head>
@@ -398,6 +409,10 @@
       <p class="eyebrow">Why we built this</p>
       <h2>Every network treats your credential like a <span class="accent">self-reported title.</span> We built ConnCT to change that.</h2>
       <p class="lede">Real verification for CAs, CS, CMAs, Advocates, and more — so you know exactly who you're connecting with, or hiring.</p>
+      <span class="hint-inner next-cta">
+        See what's inside
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+      </span>
     </div>
 
     <div class="orb-content orb-content--2">
@@ -410,6 +425,10 @@
         <div class="feature"><div class="icon">🔍</div><div class="label">Find and hire the right professional in minutes</div></div>
         <div class="feature"><div class="icon">💼</div><div class="label">Get notified the moment a matching job opens</div></div>
       </div>
+      <span class="hint-inner next-cta">
+        See how it helps
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+      </span>
     </div>
 
     <div class="orb-content orb-content--3">
@@ -422,6 +441,10 @@
         <div class="feature"><div class="icon">🧮</div><div class="label">Calculate tax liability in seconds, no spreadsheet needed</div></div>
         <div class="feature"><div class="icon">📅</div><div class="label">Track real ITR, GST &amp; MCA filing deadlines</div></div>
       </div>
+      <span class="hint-inner next-cta">
+        Keep exploring
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+      </span>
     </div>
 
     <div class="orb-content orb-content--4">
@@ -433,6 +456,10 @@
         <div class="feature"><div class="icon">📰</div><div class="label">Publish articles that build your professional reputation</div></div>
         <div class="feature"><div class="icon">🗓️</div><div class="label">Join events and groups built for your profession</div></div>
       </div>
+      <span class="hint-inner next-cta">
+        Get started
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+      </span>
     </div>
 
     <div class="orb-content orb-content--5">
@@ -448,7 +475,7 @@
 
   <div class="hint" onclick="advance(event)">
     <span class="hint-inner">
-      <span id="hintText">Tap to explore</span>
+      Tap to explore
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
     </span>
   </div>
@@ -456,13 +483,11 @@
 <script>
   var maxStage = 5;
   var current = 0;
-  var hints = ['Tap to explore', 'See what’s inside', 'See how it helps', 'Keep exploring', 'Get started'];
   var dots = document.querySelectorAll('.progress span');
 
   function render() {
     document.body.setAttribute('data-stage', String(current));
     dots.forEach(function (d, i) { d.classList.toggle('done', i <= current); });
-    document.getElementById('hintText').textContent = hints[current] || '';
   }
   function advance(e) {
     current = current < maxStage ? current + 1 : 0;
