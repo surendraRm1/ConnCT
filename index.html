@@ -202,10 +202,10 @@
   }
 
   h1.wordmark {
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    color: var(--text-dark);
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--primary);
     margin: 0 0 60px;
     position: fixed;
     top: 42px;
@@ -217,6 +217,12 @@
     transition: opacity 0.5s ease;
   }
   body[data-stage="3"] h1.wordmark { opacity: 0; }
+  /* Matches the app's actual brand mark (lib/core/widgets/brand_logo.dart):
+     the second "C" in ConnCT is horizontally mirrored, not a plain letter. */
+  .wordmark .mirror-c {
+    display: inline-block;
+    transform: scaleX(-1);
+  }
 
   .eyebrow {
     font-size: 11px;
@@ -335,7 +341,7 @@
 <body data-stage="0">
 
   <div class="glow"></div>
-  <h1 class="wordmark">ConnCT</h1>
+  <h1 class="wordmark">Conn<span class="mirror-c">C</span>T</h1>
 
   <div class="progress" id="progress">
     <span data-i="0"></span><span data-i="1"></span><span data-i="2"></span><span data-i="3"></span>
