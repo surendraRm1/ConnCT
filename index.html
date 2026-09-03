@@ -103,6 +103,31 @@
     0%, 100% { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 24px 60px -12px rgba(10,124,255,0.22), inset 0 0 0 1px rgba(0,0,0,0.045); }
     50%      { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 30px 70px -10px rgba(10,124,255,0.32), inset 0 0 0 1px rgba(0,0,0,0.045); }
   }
+  /* Radar-style rings pinging outward from the logo, stage 0 only — sit
+     outside .orb (which clips its own contents to a circle) so they're
+     free to expand past its edge instead of being cut off at it. */
+  .ripple {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 190px;
+    height: 190px;
+    margin: -95px 0 0 -95px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(10, 124, 255, 0.4);
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+    animation: ping 3.6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+  }
+  .ripple:nth-child(2) { animation-delay: 1.2s; }
+  .ripple:nth-child(3) { animation-delay: 2.4s; }
+  @keyframes ping {
+    0%   { transform: scale(1);   opacity: 0.55; }
+    100% { transform: scale(1.85); opacity: 0; }
+  }
+  body:not([data-stage="0"]) .ripple { display: none; }
+
   body[data-stage="1"] .orb { width: min(420px, 88vw); height: min(420px, 88vw); animation: none; }
   body[data-stage="2"] .orb { width: min(520px, 92vw); height: min(520px, 92vw); animation: none; }
   body[data-stage="3"] .orb {
@@ -301,7 +326,7 @@
   body[data-stage="3"] footer { color: rgba(255,255,255,0.75); }
 </style>
 </head>
-<body data-stage="0" onclick="advance(event)">
+<body data-stage="0">
 
   <div class="glow"></div>
   <h1 class="wordmark">ConnCT</h1>
@@ -310,14 +335,16 @@
     <span data-i="0"></span><span data-i="1"></span><span data-i="2"></span><span data-i="3"></span>
   </div>
 
-  <div class="orb">
+  <div class="ripple"></div><div class="ripple"></div><div class="ripple"></div>
+
+  <div class="orb" onclick="advance(event)">
     <div class="orb-logo"><img src="/assets/logo.png" alt="ConnCT logo"></div>
 
     <div class="orb-content orb-content--1">
       <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
-      <p class="eyebrow">Built for a real profession</p>
-      <h2>A network <span class="accent">verified</span> professionals actually trust</h2>
-      <p class="lede">Built exclusively for CAs, Company Secretaries, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers — every badge means a real credential was checked.</p>
+      <p class="eyebrow">Why we built this</p>
+      <h2>Every network treats a CA like <span class="accent">anyone else.</span> We didn't think that was right.</h2>
+      <p class="lede">ConnCT verifies real credentials for India's CAs, Company Secretaries, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers — so a verified badge here actually means something.</p>
     </div>
 
     <div class="orb-content orb-content--2">
@@ -343,7 +370,7 @@
     </div>
   </div>
 
-  <div class="hint">
+  <div class="hint" onclick="advance(event)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
     <span id="hintText">Tap to explore</span>
   </div>
@@ -366,10 +393,8 @@
     document.getElementById('hintText').textContent = hints[current] || '';
   }
   function advance(e) {
-    if (current < maxStage) {
-      current++;
-      render();
-    }
+    current = current < maxStage ? current + 1 : 0;
+    render();
   }
   render();
 </script>
