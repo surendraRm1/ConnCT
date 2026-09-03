@@ -9,6 +9,7 @@
 <meta property="og:image" content="https://connct.in/assets/logo.png">
 <meta name="description" content="ConnCT is the verified professional network built for India's Chartered Accountants, Company Secretaries, Cost & Management Accountants, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers.">
 <link rel="icon" href="/assets/logo.png">
+<meta name="theme-color" content="#ffffff" id="themeColorMeta">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -240,7 +241,15 @@
     margin: 0 0 12px;
     max-width: 300px;
   }
-  h2 .accent { color: var(--primary); }
+  h2 .accent {
+    /* Subtle two-tone gradient instead of flat color — same background-clip:
+       text trick used on premium product sites, kept in our own blue. */
+    background: linear-gradient(60deg, var(--primary) 15%, var(--primary-dark) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--primary); /* fallback where background-clip:text isn't supported */
+  }
   p.lede {
     font-size: 14.5px;
     line-height: 1.55;
@@ -396,11 +405,16 @@
   var current = 0;
   var hints = ['Tap to explore', 'See what’s inside', 'Get started'];
   var dots = document.querySelectorAll('.progress span');
+  var themeColorMeta = document.getElementById('themeColorMeta');
 
   function render() {
     document.body.setAttribute('data-stage', String(current));
     dots.forEach(function (d, i) { d.classList.toggle('done', i <= current); });
     document.getElementById('hintText').textContent = hints[current] || '';
+    // Keep the mobile browser chrome color matching the actual page
+    // background at this stage (white for 0-2, brand blue once the orb
+    // fills the screen at stage 3) instead of a static, sometimes-wrong tag.
+    themeColorMeta.setAttribute('content', current === maxStage ? '#0A7CFF' : '#ffffff');
   }
   function advance(e) {
     current = current < maxStage ? current + 1 : 0;
