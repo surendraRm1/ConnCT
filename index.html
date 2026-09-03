@@ -180,10 +180,6 @@
   .orb-content--3 .badge {
     box-shadow: 0 0 0 4px rgba(255,255,255,0.9), 0 6px 18px rgba(0,0,0,0.18);
   }
-  /* Stage 2 packs the most content (5 feature rows) — a smaller badge
-     buys back a little vertical room without disappearing. */
-  .orb-content--2 .badge { width: 40px; height: 40px; margin-bottom: 14px; }
-
   .orb-content {
     position: absolute;
     inset: 0;
@@ -206,11 +202,10 @@
   }
 
   h1.wordmark {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--text-light);
-    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text-dark);
     margin: 0 0 60px;
     position: fixed;
     top: 42px;
@@ -354,8 +349,8 @@
     <div class="orb-content orb-content--1">
       <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
       <p class="eyebrow">Why we built this</p>
-      <h2>Every network treats your credential like a <span class="accent">self-reported title.</span> We didn't think that was right.</h2>
-      <p class="lede">ConnCT verifies real credentials for India's CAs, Company Secretaries, CMAs, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers — so a verified badge here actually means something.</p>
+      <h2>Every network treats your credential like a <span class="accent">self-reported title.</span> We built ConnCT to change that.</h2>
+      <p class="lede">Real verification for CAs, CS, CMAs, Advocates, and more — so you know exactly who you're connecting with, or hiring.</p>
     </div>
 
     <div class="orb-content orb-content--2">
@@ -363,10 +358,8 @@
       <p class="eyebrow">What's inside</p>
       <div class="features">
         <div class="feature"><div class="icon">🤝</div><div class="label">Connect with verified peers in your profession</div></div>
-        <div class="feature"><div class="icon">💼</div><div class="label">Find verified talent to hire, or your next role</div></div>
-        <div class="feature"><div class="icon">🧾</div><div class="label">Ask the AI Tax Assistant instant compliance questions</div></div>
+        <div class="feature"><div class="icon">🧾</div><div class="label">Ask the AI Tax Assistant for instant compliance answers</div></div>
         <div class="feature"><div class="icon">📅</div><div class="label">Track real ITR, GST &amp; MCA filing deadlines</div></div>
-        <div class="feature"><div class="icon">📰</div><div class="label">Get regulatory updates, automatically</div></div>
       </div>
     </div>
 
@@ -395,7 +388,7 @@
 <script>
   var maxStage = 3;
   var current = 0;
-  var hints = ['Tap to explore', 'See what you can do', 'Continue'];
+  var hints = ['Tap to explore', 'See what’s inside', 'Get started'];
   var dots = document.querySelectorAll('.progress span');
 
   function render() {
