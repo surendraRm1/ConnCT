@@ -497,7 +497,7 @@
 <!-- Hero Main Title -->
 <div class="flex flex-col gap-space-xs">
 <h1 class="font-display-lg text-display-lg text-brand-navy-deep tracking-tight text-balance">
-              Not just another <span class="text-primary-container relative inline-block underline decoration-primary-container/20 decoration-wavy">self-reported title.</span>
+              Not just another self-reported title.
 </h1>
 <p class="font-headline-sm text-headline-sm text-on-surface-variant max-w-xl font-normal leading-relaxed">
               Real verification for CAs, CS, CMAs, Advocates, and more — so you know exactly who you're connecting with, or hiring.
@@ -1227,7 +1227,17 @@
     setTimeout(function () {
       introWrap.style.display = 'none';
       fullSite.style.display = 'block';
-      window.scrollTo(0, 0);
+      // Reloading, reopening a shared link, or hitting back/forward can
+      // land here with a section hash already in the URL (e.g. #community)
+      // — the browser's own anchor-scroll can't do anything with it since
+      // the target was still display:none at actual load time. Honor it
+      // now instead of always resetting to the top.
+      var target = location.hash ? document.querySelector(location.hash) : null;
+      if (target) {
+        target.scrollIntoView({ behavior: 'auto', block: 'start' });
+      } else {
+        window.scrollTo(0, 0);
+      }
     }, 500);
   }
 
