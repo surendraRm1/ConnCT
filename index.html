@@ -46,6 +46,10 @@
     color: var(--text-dark);
     font-family: var(--font-body);
     overflow: hidden;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html, body { scroll-behavior: auto; }
   }
   body {
     position: relative;
@@ -107,6 +111,15 @@
     border: 1px solid rgba(255, 255, 255, 0.14);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 16px 40px -16px rgba(0, 0, 0, 0.35);
   }
+
+  /* "Active Mandate Filter" preview chips (network-and-hiring section) —
+     a clearly-labeled UI mockup, not a real search; clicking toggles the
+     chip's own on/off look only (no fabricated result-count change) so
+     it demonstrates the interaction pattern honestly rather than
+     pretending to filter data that doesn't exist on a static page. */
+  .filter-chip { border: none; font: inherit; }
+  .filter-chip-off { background: #ffffff !important; color: #0b1c30 !important; box-shadow: 0 1px 2px rgba(0,0,0,0.04) !important; }
+  .filter-chip:not(.filter-chip-off) { background: #002B66 !important; color: #ffffff !important; }
 
   .glow {
     position: absolute;
@@ -427,7 +440,24 @@
   </div><!-- /#intro-wrap -->
 
   <div id="full-site" style="display:none;">
-<header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[72rem] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-xs" href="#top"><img alt="ConnCT logo" class="h-8 w-auto object-contain" src="/assets/logo.png"/><span class="font-headline-md text-headline-md text-brand-navy-deep tracking-tight">Conn<span class="mirror-c">C</span>T</span></a><div class="hidden sm:flex items-center gap-space-2xs px-space-xs py-space-2xs rounded-full bg-verified-teal-subtle text-verified-teal"><span class="material-symbols-outlined text-[14px]">verified</span><span class="font-label-sm text-label-sm uppercase">India Certified</span></div></div><nav class="hidden xl:flex items-center gap-space-lg"><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#why-connct">Why ConnCT</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#network-and-hiring">Network &amp; Hiring</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#compliance-and-ai">Compliance &amp; AI</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#community">Community</a></nav><div class="flex items-center gap-space-sm"><a class="hidden sm:inline-flex items-center gap-space-xs px-space-md py-space-xs bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary transition-all active:scale-95" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined text-[18px]">shop</span><span class="whitespace-nowrap">Get the App</span></a><button class="xl:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false" id="mobile-nav-btn" type="button"><span class="material-symbols-outlined text-[26px] text-brand-navy-deep" id="mobile-nav-icon">menu</span></button></div></div><nav id="mobile-nav" class="xl:hidden hidden flex-col gap-1 px-gutter-desktop pb-space-md border-t border-border-subtle bg-surface-container-lowest"><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#why-connct" onclick="closeMobileNav()">Why ConnCT</a><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#network-and-hiring" onclick="closeMobileNav()">Network &amp; Hiring</a><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#compliance-and-ai" onclick="closeMobileNav()">Compliance &amp; AI</a><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#community" onclick="closeMobileNav()">Community</a><a class="sm:hidden mt-space-xs inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm bg-primary-container text-on-primary font-label-md text-label-md rounded-lg" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" target="_blank" rel="noopener noreferrer" onclick="closeMobileNav()"><span class="material-symbols-outlined text-[18px]">shop</span>Get the App</a></nav></header><main id="top" class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[72rem] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-xs" href="#top"><img alt="ConnCT logo" class="h-8 w-auto object-contain" src="/assets/logo.png"/><span class="font-headline-md text-headline-md text-brand-navy-deep tracking-tight">Conn<span class="mirror-c">C</span>T</span></a><div class="hidden sm:flex items-center gap-space-2xs px-space-xs py-space-2xs rounded-full bg-verified-teal-subtle text-verified-teal"><span class="material-symbols-outlined text-[14px]">verified</span><span class="font-label-sm text-label-sm uppercase">India Certified</span></div></div><nav class="hidden xl:flex items-center gap-space-lg"><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#why-connct">Why ConnCT</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#network-and-hiring">Network &amp; Hiring</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#compliance-and-ai">Compliance &amp; AI</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#community">Community</a></nav><div class="flex items-center gap-space-sm"><a class="hidden sm:inline-flex items-center gap-space-xs px-space-md py-space-xs bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary transition-all active:scale-95" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" target="_blank" rel="noopener noreferrer" onclick="return handleGetAppClick(event)"><span class="material-symbols-outlined text-[18px]">shop</span><span class="whitespace-nowrap">Get the App</span></a><button class="xl:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false" id="mobile-nav-btn" type="button"><span class="material-symbols-outlined text-[26px] text-brand-navy-deep" id="mobile-nav-icon">menu</span></button></div></div><nav id="mobile-nav" class="xl:hidden hidden flex-col gap-1 px-gutter-desktop pb-space-md border-t border-border-subtle bg-surface-container-lowest"><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#why-connct" onclick="closeMobileNav()">Why ConnCT</a><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#network-and-hiring" onclick="closeMobileNav()">Network &amp; Hiring</a><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#compliance-and-ai" onclick="closeMobileNav()">Compliance &amp; AI</a><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#community" onclick="closeMobileNav()">Community</a><a class="sm:hidden mt-space-xs inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm bg-primary-container text-on-primary font-label-md text-label-md rounded-lg" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" target="_blank" rel="noopener noreferrer" onclick="closeMobileNav()"><span class="material-symbols-outlined text-[18px]">shop</span>Get the App</a></nav></header>
+
+<!-- Desktop fallback for "Get the App" — a senior practitioner opening
+     this link on a desktop/laptop just lands on the Play Store's own web
+     page for an app they can't install there. handleGetAppClick() below
+     only ever intercepts on a real desktop-sized, mouse-driven viewport
+     (touch devices always get the normal direct Play Store link,
+     unchanged) and shows this instead: a real, scannable QR (same one
+     used in the hero) plus the direct link as a fallback. -->
+<div id="app-qr-modal" class="hidden fixed inset-0 z-[100] items-center justify-center p-space-md" style="background: rgba(11,28,48,0.55); backdrop-filter: blur(6px);" onclick="if(event.target===this) closeAppQrModal();">
+<div class="rounded-2xl p-space-xl max-w-sm w-full flex flex-col items-center gap-space-sm text-center relative" style="background: rgba(255,255,255,0.98); box-shadow: 0 24px 60px -12px rgba(15,23,42,0.35);">
+<button class="absolute top-space-sm right-space-sm w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-low transition-colors" onclick="closeAppQrModal()" aria-label="Close" type="button"><span class="material-symbols-outlined text-[20px] text-on-surface-variant">close</span></button>
+<img class="w-40 h-40 rounded-xl shadow-sm mt-space-xs" width="160" height="160" src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&amp;margin=0&amp;data=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.connct.connect_professionals" alt="QR code to install ConnCT on Android">
+<h3 class="font-headline-sm text-headline-sm text-brand-navy-deep">Scan to open ConnCT</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Point your phone's camera at this code — it opens ConnCT directly on Google Play.</p>
+<a class="w-full py-space-sm rounded-xl bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors mt-space-xs" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" target="_blank" rel="noopener noreferrer">Or open Google Play directly</a>
+</div>
+</div><main id="top" class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
 <!-- Top Subtle Trust Banner -->
 <section class="w-full bg-surface-container-high/40 py-space-xs">
 <div class="max-w-[72rem] mx-auto px-gutter-desktop flex flex-wrap items-center justify-between gap-space-sm text-body-sm text-on-surface-variant font-body-sm">
@@ -496,26 +526,15 @@
 <span class="font-headline-sm text-headline-sm font-bold text-on-primary leading-tight">Google Play</span>
 </div>
 </a>
-<div class="flex items-center gap-space-sm bg-surface-card px-space-sm py-space-xs rounded-xl shadow-sm">
-<!-- Visual Mock QR -->
-<div class="w-12 h-12 p-1 bg-surface-container-lowest rounded-lg shadow-sm flex items-center justify-center shrink-0">
-<svg class="w-10 h-10 text-brand-navy-deep fill-current" viewbox="0 0 40 40">
-<rect fill="none" height="14" rx="2" stroke="currentColor" stroke-width="3" width="14" x="2" y="2"></rect>
-<rect fill="currentColor" height="6" width="6" x="6" y="6"></rect>
-<rect fill="none" height="14" rx="2" stroke="currentColor" stroke-width="3" width="14" x="24" y="2"></rect>
-<rect fill="currentColor" height="6" width="6" x="28" y="6"></rect>
-<rect fill="none" height="14" rx="2" stroke="currentColor" stroke-width="3" width="14" x="2" y="24"></rect>
-<rect fill="currentColor" height="6" width="6" x="6" y="28"></rect>
-<circle cx="28" cy="28" fill="currentColor" r="3"></circle>
-<rect fill="currentColor" height="4" width="6" x="24" y="34"></rect>
-<rect fill="currentColor" height="6" width="4" x="34" y="24"></rect>
-<rect fill="currentColor" height="10" width="4" x="18" y="10"></rect>
-<rect fill="currentColor" height="8" width="4" x="18" y="22"></rect>
-</svg>
-</div>
-<div class="flex flex-col">
-<span class="font-label-md text-label-md text-brand-navy-deep">Scan to Verify &amp; Install</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Instant COP verification on Android</span>
+<div class="flex items-center gap-space-sm bg-surface-card px-space-sm py-space-xs rounded-xl shadow-sm min-w-0">
+<!-- A genuinely scannable QR (was a hand-drawn decorative pattern that
+     encoded nothing — labeled "Visual Mock QR" in the source, which would
+     have just failed silently for anyone who actually tried scanning it).
+     Generated from the real Play Store URL via a public, key-free QR API. -->
+<img class="w-12 h-12 rounded-lg shadow-sm shrink-0" width="48" height="48" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=0&data=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.connct.connect_professionals" alt="QR code to install ConnCT on Android" loading="lazy">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-brand-navy-deep">Scan to Install</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Opens ConnCT on Google Play</span>
 </div>
 </div>
 </div>
@@ -707,9 +726,9 @@
 <div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-xl">
 <span class="font-label-sm text-label-sm text-outline uppercase">Active Mandate Filter</span>
 <div class="flex flex-wrap gap-space-2xs">
-<span class="px-space-xs py-1 rounded-full bg-brand-navy-deep text-on-primary font-label-sm text-label-sm">GST Audit (FY 24-25)</span>
-<span class="px-space-xs py-1 rounded-full bg-surface-card text-on-surface font-label-sm text-label-sm shadow-sm">SEBI Compliance</span>
-<span class="px-space-xs py-1 rounded-full bg-surface-card text-on-surface font-label-sm text-label-sm shadow-sm">Delhi High Court</span>
+<button class="filter-chip px-space-xs py-1 rounded-full bg-brand-navy-deep text-on-primary font-label-sm text-label-sm cursor-pointer transition-all active:scale-95" onclick="this.classList.toggle('filter-chip-off')" type="button">GST Audit (FY 24-25)</button>
+<button class="filter-chip filter-chip-off px-space-xs py-1 rounded-full bg-surface-card text-on-surface font-label-sm text-label-sm shadow-sm cursor-pointer transition-all active:scale-95" onclick="this.classList.toggle('filter-chip-off')" type="button">SEBI Compliance</button>
+<button class="filter-chip filter-chip-off px-space-xs py-1 rounded-full bg-surface-card text-on-surface font-label-sm text-label-sm shadow-sm cursor-pointer transition-all active:scale-95" onclick="this.classList.toggle('filter-chip-off')" type="button">Delhi High Court</button>
 </div>
 <div class="pt-space-2xs flex items-center justify-between text-body-sm text-on-surface-variant">
 <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-verified-teal">done_all</span> 142 Matching Firms</span>
@@ -788,7 +807,7 @@
 <span class="material-symbols-outlined text-[22px]">smart_toy</span>
 </div>
 <span class="px-space-xs py-1 rounded-full bg-verified-teal-subtle text-verified-teal font-label-sm text-label-sm font-semibold">
-                Income Tax Act 2024
+                Grounded in Statutory Law
               </span>
 </div>
 <h3 class="font-headline-md text-headline-md text-brand-navy-deep">
@@ -829,7 +848,7 @@
 <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
 <span class="material-symbols-outlined text-[22px]">calculate</span>
 </div>
-<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">AY 2025-26</span>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold" id="current-ay-label">AY 2025-26</span>
 </div>
 <h3 class="font-headline-md text-headline-md text-brand-navy-deep">
               Calculate Tax Liability
@@ -892,7 +911,7 @@
 <span class="font-body-sm text-body-sm text-outline">Turnover &gt; ₹5 Crore (Sec 39)</span>
 </div>
 </div>
-<span class="px-space-xs py-1 rounded bg-surface-card text-alert-rose font-label-sm text-label-sm font-semibold shadow-sm">4 Days Left</span>
+<span class="px-space-xs py-1 rounded bg-surface-card text-alert-rose font-label-sm text-label-sm font-semibold shadow-sm" id="deadline-gstr3b">Due 20th</span>
 </div>
 <div class="flex items-center justify-between p-space-xs rounded-xl bg-surface-container-low">
 <div class="flex items-center gap-space-xs">
@@ -902,7 +921,7 @@
 <span class="font-body-sm text-body-sm text-outline">Annual Financial Statements Filing</span>
 </div>
 </div>
-<span class="px-space-xs py-1 rounded bg-surface-card text-compliance-amber font-label-sm text-label-sm font-semibold shadow-sm">14 Days Left</span>
+<span class="px-space-xs py-1 rounded bg-surface-card text-compliance-amber font-label-sm text-label-sm font-semibold shadow-sm">Upcoming</span>
 </div>
 <div class="flex items-center justify-between p-space-xs rounded-xl bg-surface-container-low">
 <div class="flex items-center gap-space-xs">
@@ -912,7 +931,7 @@
 <span class="font-body-sm text-body-sm text-outline">Tax Deducted for Prev Month</span>
 </div>
 </div>
-<span class="px-space-xs py-1 rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-sm">Upcoming</span>
+<span class="px-space-xs py-1 rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-sm" id="deadline-tds">Due 7th</span>
 </div>
 </div>
 </div>
@@ -1014,7 +1033,7 @@
 <div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-sm">
 <div class="flex items-center justify-between">
 <span class="px-space-xs py-[2px] rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">UPCOMING LIVE ROUNDTABLE</span>
-<span class="font-label-sm text-label-sm text-outline">Oct 26, 2025 • 4:00 PM IST</span>
+<span class="font-label-sm text-label-sm text-outline" id="upcoming-event-date">Oct 26, 2025 • 4:00 PM IST</span>
 </div>
 <h4 class="font-headline-sm text-headline-sm text-brand-navy-deep">
                 Mastering MCA V3 Portal Filings &amp; Company Secretarial Audits for Fast-Growing Private Firms
@@ -1223,6 +1242,24 @@
       btn.setAttribute('aria-expanded', 'true');
     }
   }
+  // Only intercepts on a real desktop-sized, mouse-driven viewport — a
+  // touch device (any phone, most tablets) always gets the normal direct
+  // Play Store link, unchanged, since that's exactly where "Get the App"
+  // should go for them.
+  function handleGetAppClick(e) {
+    var isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth >= 768;
+    if (!isDesktop) return true;
+    e.preventDefault();
+    var modal = document.getElementById('app-qr-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    return false;
+  }
+  function closeAppQrModal() {
+    var modal = document.getElementById('app-qr-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
   function closeMobileNav() {
     var nav = document.getElementById('mobile-nav');
     var icon = document.getElementById('mobile-nav-icon');
@@ -1246,6 +1283,53 @@
     render();
   }
   render();
+
+  // Every date/countdown on the page is computed from the visitor's own
+  // real clock, not hardcoded — a static "AY 2025-26" or "4 Days Left"
+  // looks current on the day it's written and visibly wrong (or actively
+  // misleading, for a countdown) a few months later on a page with no
+  // build step to refresh it. This runs once on load and is correct for
+  // as long as the page stays live, with no maintenance.
+  function updateDynamicDates() {
+    var now = new Date();
+
+    // Indian Assessment Year: FY runs Apr(3, 0-indexed)-Mar; AY = FY+1.
+    var fyStartYear = now.getMonth() >= 3 ? now.getFullYear() : now.getFullYear() - 1;
+    var ayStartYear = fyStartYear + 1;
+    var ayLabel = 'AY ' + ayStartYear + '-' + String(ayStartYear + 1).slice(-2);
+    var ayEl = document.getElementById('current-ay-label');
+    if (ayEl) ayEl.textContent = ayLabel;
+
+    // Days remaining until the next occurrence of a given day-of-month —
+    // only used for the two deadlines here (GSTR-3B's 20th, TDS Challan
+    // 281's 7th) that are genuinely stable monthly-recurring statutory
+    // dates; MCA AOC-4 is annual and AGM-dependent, so it deliberately
+    // stays labeled "Upcoming" rather than a specific fabricated count.
+    function daysUntilNextMonthlyDate(day) {
+      var target = new Date(now.getFullYear(), now.getMonth(), day, 23, 59, 59);
+      if (target < now) target = new Date(now.getFullYear(), now.getMonth() + 1, day, 23, 59, 59);
+      return Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+    }
+    function setCountdown(id, day) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var days = daysUntilNextMonthlyDate(day);
+      el.textContent = days <= 0 ? 'Due Today' : (days === 1 ? '1 Day Left' : days + ' Days Left');
+    }
+    setCountdown('deadline-gstr3b', 20);
+    setCountdown('deadline-tds', 7);
+
+    // Sample upcoming-event date — always ~3 weeks out from whenever the
+    // page is actually loaded, so the community section never shows an
+    // event date that's already passed.
+    var eventDate = new Date(now.getTime() + 21 * 24 * 60 * 60 * 1000);
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var eventEl = document.getElementById('upcoming-event-date');
+    if (eventEl) {
+      eventEl.textContent = months[eventDate.getMonth()] + ' ' + eventDate.getDate() + ', ' + eventDate.getFullYear() + ' • 4:00 PM IST';
+    }
+  }
+  updateDynamicDates();
 </script>
 
 </body>
