@@ -12,7 +12,10 @@
 <meta name="theme-color" content="#ffffff" id="themeColorMeta">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed-variant": "#0039b5", "on-tertiary-fixed": "#131b2e", "tertiary-fixed-dim": "#bec6e0", "on-secondary-fixed-variant": "#004b73", "on-tertiary": "#ffffff", "surface-container-high": "#dce9ff", "surface-container-lowest": "#ffffff", "on-secondary-container": "#00476e", "on-tertiary-container": "#cdd5ef", "border-subtle": "#E2E8F0", "surface-tint": "#2151da", "on-tertiary-fixed-variant": "#3f465c", "background": "#f8f9ff", "secondary": "#006398", "brand-navy-deep": "#002B66", "inverse-on-surface": "#eaf1ff", "surface-bright": "#f8f9ff", "on-surface-variant": "#434655", "surface-container-low": "#eff4ff", "secondary-fixed-dim": "#93ccff", "inverse-primary": "#b7c4ff", "surface-container-highest": "#d3e4fe", "primary-container": "#1d4ed8", "on-primary": "#ffffff", "border-active": "#CBD5E1", "compliance-amber": "#D97706", "on-background": "#0b1c30", "surface-dim": "#cbdbf5", "alert-rose-subtle": "#FFE4E6", "on-primary-fixed": "#001551", "brand-blue-vibrant": "#0A7CFF", "secondary-container": "#5bb8fe", "outline": "#747686", "error-container": "#ffdad6", "alert-rose": "#E11D48", "inverse-surface": "#213145", "primary-fixed-dim": "#b7c4ff", "secondary-fixed": "#cce5ff", "surface-container": "#e5eeff", "tertiary-container": "#545c72", "surface-subtle": "#F1F5F9", "outline-variant": "#c4c5d7", "surface-canvas": "#F8FAFC", "surface": "#f8f9ff", "compliance-amber-subtle": "#FEF3C7", "on-primary-container": "#cad3ff", "primary-fixed": "#dce1ff", "surface-card": "#FFFFFF", "tertiary-fixed": "#dae2fd", "on-surface": "#0b1c30", "on-error": "#ffffff", "on-secondary": "#ffffff", "verified-teal": "#0D9488", "surface-variant": "#d3e4fe", "error": "#ba1a1a", "on-secondary-fixed": "#001d31", "verified-teal-subtle": "#CCFBF1", "primary": "#0037b0", "tertiary": "#3d445a", "on-error-container": "#93000a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-mobile": "1rem", "space-3xl": "3rem", "space-2xl": "2rem", "space-xs": "0.5rem", "container-max-mobile": "26rem", "space-md": "1rem", "space-lg": "1.25rem", "gutter-desktop": "1.5rem", "space-sm": "0.75rem", "container-max-desktop": "72rem", "space-2xs": "0.25rem", "space-xl": "1.5rem" }, "fontFamily": { "headline-lg": ["plusJakartaSans"], "headline-sm": ["plusJakartaSans"], "body-lg": ["inter"], "body-md": ["inter"], "display-lg": ["plusJakartaSans"], "display-lg-mobile": ["plusJakartaSans"], "label-lg": ["inter"], "headline-md": ["plusJakartaSans"], "body-sm": ["inter"], "label-sm": ["inter"], "label-md": ["inter"] }, "fontSize": { "headline-lg": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-sm": ["1.125rem", { "lineHeight": "1.5rem", "fontWeight": "600" }], "body-lg": ["1rem", { "lineHeight": "1.5rem", "fontWeight": "400" }], "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }], "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }], "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["0.75rem", { "lineHeight": "1.125rem", "fontWeight": "400" }], "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.04em", "fontWeight": "700" }], "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }] } } } };</script>
 <style>
   :root {
     --primary: #0A7CFF;
@@ -22,17 +25,18 @@
     --text-light: #86868B;
     --border: #E5E5EA;
     --spring: cubic-bezier(0.22, 1, 0.36, 1);
-    /* Single source of truth for the orb's current diameter — .orb and
-       .ripple both read this instead of duplicating the same numbers,
-       so the ripple rings always emanate from exactly the visible edge
-       of whatever size the orb currently is, on every stage. */
     --orb-size: 190px;
+    --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   }
   body[data-stage="1"] { --orb-size: min(500px, 88vw, 82vh); }
   body[data-stage="2"] { --orb-size: min(560px, 90vw, 85vh); }
   body[data-stage="3"] { --orb-size: min(600px, 92vw, 88vh); }
   body[data-stage="4"] { --orb-size: min(640px, 94vw, 90vh); }
-  body[data-stage="5"] { --orb-size: 320vmax; }
+  /* Stage 5 (full-screen takeover, "Join ConnCT today") is retired — the
+     4th click now hands off to #full-site (Option B's page) instead of a
+     5th orb stage. See .site-revealed below and revealFullSite() in the
+     script at the bottom. */
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body {
     margin: 0;
@@ -40,7 +44,7 @@
     height: 100%;
     background: #ffffff;
     color: var(--text-dark);
-    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    font-family: var(--font-body);
     overflow: hidden;
   }
   body {
@@ -54,14 +58,19 @@
     cursor: pointer;
     user-select: none;
   }
+  /* Once the intro hands off to #full-site (see revealFullSite() at the
+     bottom), the intro's full-viewport click-lock layout has to give way
+     to an ordinary scrolling document — real text selection, a normal
+     cursor, natural height instead of a pinned 100dvh circle stage. */
+  body.site-revealed {
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: auto;
+    cursor: default;
+    user-select: auto;
+  }
 
-  /* Ambient glow behind the orb — a tight halo hugging the circle, not a
-     wash across the page. Rendered this myself (headless-Chrome
-     screenshots) after the previous version — 0.30 peak fading out only
-     at 66% of farthest-corner — turned out to visibly tint almost the
-     entire viewport blue on every stage, which read as "dull/blue page"
-     rather than "shiny circle". Pulling the falloff in to 40% keeps the
-     brightness close to the edge where it actually reads as a highlight. */
   .glow {
     position: absolute;
     inset: 0;
@@ -71,12 +80,6 @@
   }
   body[data-stage="5"] .glow { opacity: 0; }
 
-  /* Ambient background accents — fill the empty space around the circle
-     on wide viewports with soft blurred color, matching .glow's existing
-     treatment, rather than literal UI chrome (grid lines, cards) that
-     would clash with the page's restrained look. Hidden on narrow
-     viewports (little space to spare there) and at stage 5, once the
-     orb itself fills the screen. */
   .accent-blob {
     position: fixed;
     border-radius: 50%;
@@ -114,7 +117,6 @@
   .progress span.done { background: var(--primary); transform: scale(1.15); }
   body[data-stage="5"] .progress { opacity: 0; pointer-events: none; }
 
-  /* ── The orb — the whole interaction lives here ─────────────────── */
   .orb {
     position: relative;
     width: var(--orb-size);
@@ -135,16 +137,6 @@
       background-color 0.9s ease;
     animation: breathe 3.6s ease-in-out infinite;
     z-index: 5;
-    /* Deliberately NOT overflow:hidden here — a circle is a bad container
-       for variable-length text, and clipping it silently cuts words off
-       mid-sentence (found live: "actually" rendering as "ually"). The
-       circular *shape* still comes from border-radius on this element's
-       own background regardless of overflow; only .orb-logo below needs
-       its own overflow:hidden, to crop the square logo image into a
-       circle. If content ever runs long, it now spills onto the page's
-       own white background past the circle's edge instead of vanishing —
-       on a white-on-white page that's a minor cosmetic edge case, not
-       lost content. */
   }
   body:not([data-stage="0"]) .orb { animation: none; }
   body[data-stage="5"] .orb { box-shadow: none; }
@@ -152,13 +144,6 @@
     0%, 100% { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 24px 60px -12px rgba(10,124,255,0.22), inset 0 0 0 1px rgba(0,0,0,0.045); }
     50%      { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 30px 70px -10px rgba(10,124,255,0.32), inset 0 0 0 1px rgba(0,0,0,0.045); }
   }
-  /* A glossy specular highlight, like light catching the top-left of a
-     polished sphere — what actually makes something read as "shiny"
-     rather than just flat white. z-index -1 (not positive) is required:
-     it needs to sit above .orb's own white fill but below the actual
-     text/badge content, which is positioned with z-index:auto — a
-     positive z-index here would paint ON TOP of that content instead,
-     since explicit-positive stacks above auto in the same context. */
   .orb::before {
     content: '';
     position: absolute;
@@ -168,11 +153,6 @@
     z-index: -1;
     pointer-events: none;
   }
-  /* Radar-style rings pinging outward from the orb's current edge, on
-     every stage — sized off the same --orb-size variable as .orb itself
-     so a stage's waves always start exactly at that stage's visible
-     edge, not a leftover fixed size from stage 0. Positioned outside
-     .orb (which isn't clipped) so they're free to expand past it. */
   .ripple {
     position: fixed;
     top: 50%;
@@ -193,17 +173,8 @@
     0%   { transform: scale(1);   opacity: 0.55; }
     100% { transform: scale(1.85); opacity: 0; }
   }
-  /* Fullscreen at stage 5 — a ring expanding past the edge of an orb
-     already bigger than the viewport would never be visible anyway. */
   body[data-stage="5"] .ripple { display: none; }
 
-  /* Stage-0-only: the logo fills the whole (small) orb. It fades out as
-     the orb starts growing — replaced by the small badge below, which is
-     laid out as part of each stage's own centered content instead of
-     positioned separately, so it stays correctly centered no matter how
-     large the orb grows (including stage 5, where the orb is bigger than
-     the viewport and its own top-left corner is off-screen — anything
-     positioned relative to *that* edge would end up invisible). */
   .orb-logo {
     position: absolute;
     inset: 0;
@@ -251,9 +222,10 @@
   }
 
   h1.wordmark {
+    font-family: var(--font-display);
     font-size: 17px;
-    font-weight: 800; /* Manrope tops out at 800 (ExtraBold) — no 900 face */
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--primary);
     margin: 0 0 60px;
     position: fixed;
@@ -265,67 +237,47 @@
     opacity: 1;
     transition: opacity 0.5s ease;
   }
-  /* Matches the app's actual brand mark (lib/core/widgets/brand_logo.dart):
-     the second "C" in ConnCT is horizontally mirrored, not a plain letter. */
   .wordmark .mirror-c {
     display: inline-block;
     transform: scaleX(-1);
   }
 
   .eyebrow {
+    font-family: var(--font-body);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    /* primary-dark, not primary — plain --primary on white is only ~3.9:1
-       contrast, below the 4.5:1 small bold text needs; primary-dark clears
-       6.4:1 while staying the same blue family. */
     color: var(--primary-dark);
     margin: 0 0 12px;
   }
   h2 {
+    font-family: var(--font-display);
     font-size: clamp(20px, 5.6vw, 25px);
     font-weight: 800;
-    letter-spacing: -0.015em;
-    line-height: 1.22;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
     margin: 0 0 12px;
     max-width: 300px;
+    text-wrap: balance;
   }
   h2 .accent {
-    /* Subtle two-tone gradient instead of flat color — same background-clip:
-       text trick used on premium product sites, kept in our own blue. */
     background: linear-gradient(60deg, var(--primary) 15%, var(--primary-dark) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: var(--primary); /* fallback where background-clip:text isn't supported */
+    color: var(--primary);
   }
   p.lede {
+    font-family: var(--font-body);
     font-size: 14.5px;
-    line-height: 1.55;
+    line-height: 1.6;
     color: var(--text-semidark);
     margin: 0;
     max-width: 280px;
   }
   p.lede--2 { margin-bottom: 22px; max-width: 300px; }
 
-  /* Two things had to be true at once here, and they pull in opposite
-     directions: (1) the whole feature list, as a block, needs to be
-     centered under the badge/headline like everything else in the
-     circle, and (2) every row's icon needs to sit at the SAME x position
-     as every other row's icon, like a normal checklist — not each row
-     independently centered based on its own width. A previous fix only
-     solved (1) (justify-content:center per row), which visibly broke
-     (2): a short one-line row centers to a different x than a longer
-     two-line row sitting right above it, producing a zigzag icon column
-     (caught by actually rendering the page and looking, not guessing).
-     The fix: let .features shrink-wrap to its widest row (width:
-     fit-content) so IT centers as one unit under the headline, while
-     rows inside it left-align to a common edge (align-items:flex-start)
-     instead of each centering independently. Wrapping still has to work
-     for long labels even though rows no longer stretch to a shared
-     width, so it's now enforced directly on .label's own max-width
-     instead of relying on the row being stretched. */
   .features {
     display: flex;
     flex-direction: column;
@@ -352,16 +304,18 @@
     font-size: 15px;
   }
   .feature .label {
-    max-width: 296px; /* 340 - icon(32) - gap(12); independent of row stretch now */
+    font-family: var(--font-body);
+    max-width: 296px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-dark);
-    line-height: 1.35;
+    line-height: 1.4;
   }
 
   .orb-content--5 h2 { max-width: 320px; }
   .orb-content--5 p.lede { max-width: 300px; margin-bottom: 26px; }
   .cta-btn {
+    font-family: var(--font-display);
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -377,18 +331,8 @@
   }
   .cta-btn:active { transform: scale(0.96); }
 
-  /* The pill button itself — reused in two places: as the fixed stage-0
-     prompt below the small splash logo (wrapped in .hint, since there's
-     no content card yet to belong to), and as an in-flow "next" button
-     inside each stage's own .orb-content on stages 1-4. Making it part
-     of the actual content flow (not a second fixed-position element)
-     is deliberate — a fixed-position button's gap to the content above
-     it was accidental, not designed: it varied from ~49px to ~120px
-     between slides purely because slides have different numbers of
-     features, which reads as unpolished. As a real flex child with a
-     fixed margin-top, the gap is now identical everywhere by
-     construction. */
   .hint-inner {
+    font-family: var(--font-display);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -418,18 +362,17 @@
     transition: opacity 0.4s ease;
   }
   body:not([data-stage="0"]) .hint { opacity: 0; pointer-events: none; }
-
 </style>
 </head>
 <body data-stage="0">
-
+  <div id="intro-wrap">
   <div class="glow"></div>
   <div class="accent-blob accent-blob--1"></div>
   <div class="accent-blob accent-blob--2"></div>
   <h1 class="wordmark">Conn<span class="mirror-c">C</span>T</h1>
 
   <div class="progress" id="progress">
-    <span data-i="0"></span><span data-i="1"></span><span data-i="2"></span><span data-i="3"></span><span data-i="4"></span><span data-i="5"></span>
+    <span data-i="0"></span><span data-i="1"></span><span data-i="2"></span><span data-i="3"></span><span data-i="4"></span>
   </div>
 
   <div class="ripple"></div><div class="ripple"></div><div class="ripple"></div>
@@ -495,15 +438,6 @@
       </span>
     </div>
 
-    <div class="orb-content orb-content--5">
-      <div class="badge"><img src="/assets/logo.png" alt="ConnCT logo"></div>
-      <h2>Join ConnCT today</h2>
-      <p class="lede">Download the app and build your professional future.</p>
-      <a class="cta-btn" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" onclick="event.stopPropagation()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.6.3-1 .8-1.3L13.7 12l-9.9 9.8c-.5-.3-.8-.7-.8-1.3zM16.8 15l-2.7-2.7L5.3 21.1 16.8 15zM20.2 10.6c.6.4.8.9.8 1.4s-.3 1-.8 1.4l-2.6 1.5-3-3 3-3 2.6 1.5v-.1zM5.3 2.9l8.7 8.7L16.8 9 5.3 2.9z"/></svg>
-        Get it on Google Play
-      </a>
-    </div>
   </div>
 
   <div class="hint" onclick="advance(event)">
@@ -512,18 +446,795 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
     </span>
   </div>
+  </div><!-- /#intro-wrap -->
+
+  <div id="full-site" style="display:none;">
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[72rem] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-xs" data-path="home" href="#"><img alt="ConnCT logo" class="h-8 w-auto object-contain" src="/assets/logo.png"/><span class="font-headline-md text-headline-md text-brand-navy-deep tracking-tight">ConnCT</span></a><div class="hidden sm:flex items-center gap-space-2xs px-space-xs py-space-2xs rounded-full bg-verified-teal-subtle text-verified-teal"><span class="material-symbols-outlined text-[14px]">verified</span><span class="font-label-sm text-label-sm uppercase">India Certified</span></div></div><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-bold"><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" data-path="why-connct" href="#">Why ConnCT</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" data-path="network-and-hiring" href="#">Network &amp; Hiring</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" data-path="compliance-and-ai" href="#">Compliance &amp; AI</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" data-path="community" href="#">Community</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" data-path="statutory-deadlines" href="#">Statutory Deadlines</a></nav><div class="flex items-center gap-space-sm"><a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-xs text-primary font-label-md text-label-md hover:bg-surface-container-low hover:text-on-primary-fixed-variant rounded-lg transition-colors" data-path="sign-in" href="#">Sign In</a><a class="inline-flex items-center gap-space-xs px-space-md py-space-xs bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary transition-all active:scale-95" data-path="get-started" href="#"><span class="material-symbols-outlined text-[18px]">shop</span><span class="whitespace-nowrap">Get the App</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Subtle Trust Banner -->
+<section class="w-full bg-surface-container-high/40 py-space-xs">
+<div class="max-w-[72rem] mx-auto px-gutter-desktop flex flex-wrap items-center justify-between gap-space-sm text-body-sm text-on-surface-variant font-body-sm">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex h-2 w-2 rounded-full bg-verified-teal animate-pulse"></span>
+<span class="font-label-md text-label-md text-brand-navy-deep">Direct Verification Engine Live:</span>
+<span>ICAI, ICSI, ICMAI &amp; Bar Council Certificate of Practice (COP) Authentication</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-verified-teal">verified_user</span>
+          DPDP Act 2023 Compliant
+        </span>
+<span class="hidden md:inline text-outline-variant">•</span>
+<span class="hidden md:inline font-label-sm text-label-sm text-brand-navy-deep uppercase tracking-wider">Zero Unverified Profiles</span>
+</div>
+</div>
+</section>
+<!-- HERO SECTION -->
+<section class="w-full bg-surface py-space-2xl md:py-space-3xl overflow-hidden">
+<div class="max-w-[72rem] mx-auto px-gutter-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<!-- Left Hero Content Column -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Eyebrow Badge -->
+<div class="inline-flex items-center gap-space-xs self-start px-space-sm py-space-2xs rounded-full bg-surface-container-high text-brand-navy-deep shadow-sm">
+<span class="px-space-2xs py-[2px] rounded-full bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider">WHY WE BUILT THIS</span>
+<span class="text-outline">•</span>
+<span class="font-label-md text-label-md text-primary font-semibold">India's 1st Certified Network</span>
+</div>
+<!-- Hero Main Title -->
+<div class="flex flex-col gap-space-xs">
+<h1 class="font-display-lg text-display-lg text-brand-navy-deep tracking-tight text-balance">
+              Not just another <span class="text-primary-container relative inline-block underline decoration-primary-container/20 decoration-wavy">self-reported title.</span>
+</h1>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant max-w-xl font-normal leading-relaxed">
+              Real verification for CAs, CS, CMAs, Advocates, and more — so you know exactly who you're connecting with, or hiring.
+            </p>
+</div>
+<!-- Council Accreditation Pills -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mr-space-xs">Accredited Councils:</span>
+<div class="inline-flex items-center gap-1.5 px-space-xs py-1 rounded-full bg-surface-card shadow-sm text-on-surface font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-verified-teal"></span>
+              ICAI (Chartered Accountants)
+            </div>
+<div class="inline-flex items-center gap-1.5 px-space-xs py-1 rounded-full bg-surface-card shadow-sm text-on-surface font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-verified-teal"></span>
+              ICSI (Company Secretaries)
+            </div>
+<div class="inline-flex items-center gap-1.5 px-space-xs py-1 rounded-full bg-surface-card shadow-sm text-on-surface font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-verified-teal"></span>
+              ICMAI (Cost Accountants)
+            </div>
+<div class="inline-flex items-center gap-1.5 px-space-xs py-1 rounded-full bg-surface-card shadow-sm text-on-surface font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-verified-teal"></span>
+              State Bar Councils (Advocates)
+            </div>
+</div>
+<!-- Download Action Area + QR preview -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center gap-space-sm px-space-lg py-space-sm bg-brand-navy-deep text-on-primary rounded-xl shadow-md hover:bg-primary-container hover:shadow-lg transition-all active:scale-95 group" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[28px] text-surface-container-highest group-hover:scale-110 transition-transform">shop</span>
+<div class="flex flex-col text-left">
+<span class="font-label-sm text-label-sm text-surface-container-high leading-tight">GET IT ON</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary leading-tight">Google Play</span>
+</div>
+</a>
+<div class="flex items-center gap-space-sm bg-surface-card px-space-sm py-space-xs rounded-xl shadow-sm">
+<!-- Visual Mock QR -->
+<div class="w-12 h-12 p-1 bg-surface-container-lowest rounded-lg shadow-sm flex items-center justify-center shrink-0">
+<svg class="w-10 h-10 text-brand-navy-deep fill-current" viewbox="0 0 40 40">
+<rect fill="none" height="14" rx="2" stroke="currentColor" stroke-width="3" width="14" x="2" y="2"></rect>
+<rect fill="currentColor" height="6" width="6" x="6" y="6"></rect>
+<rect fill="none" height="14" rx="2" stroke="currentColor" stroke-width="3" width="14" x="24" y="2"></rect>
+<rect fill="currentColor" height="6" width="6" x="28" y="6"></rect>
+<rect fill="none" height="14" rx="2" stroke="currentColor" stroke-width="3" width="14" x="2" y="24"></rect>
+<rect fill="currentColor" height="6" width="6" x="6" y="28"></rect>
+<circle cx="28" cy="28" fill="currentColor" r="3"></circle>
+<rect fill="currentColor" height="4" width="6" x="24" y="34"></rect>
+<rect fill="currentColor" height="6" width="4" x="34" y="24"></rect>
+<rect fill="currentColor" height="10" width="4" x="18" y="10"></rect>
+<rect fill="currentColor" height="8" width="4" x="18" y="22"></rect>
+</svg>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-brand-navy-deep">Scan to Verify &amp; Install</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Instant COP verification on Android</span>
+</div>
+</div>
+</div>
+<!-- Trust Badges Summary -->
+<div class="flex items-center gap-space-lg pt-space-xs text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-verified-teal">check_circle</span>
+<span>100% Membership Verified</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-verified-teal">shield</span>
+<span>No Self-Reported Fraud</span>
+</div>
+</div>
+</div>
+<!-- Right Hero: Digital Identity Card Mockup -->
+<div class="lg:col-span-5 relative">
+<div class="absolute -top-10 -right-10 w-72 h-72 bg-brand-blue-vibrant/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -left-10 w-72 h-72 bg-verified-teal/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Pass Card Frame -->
+<div class="relative bg-surface-card rounded-2xl shadow-xl p-space-lg flex flex-col gap-space-md">
+<!-- Header bar of pass -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold text-headline-sm">C</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-brand-navy-deep leading-none">ConnCT Pass™</h3>
+<span class="font-label-sm text-label-sm text-outline">Statutory Digital ID • India</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-space-xs py-1 rounded-full bg-verified-teal-subtle text-verified-teal font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                COP ACTIVE
+              </span>
+</div>
+<!-- Profile Info Area — deliberately a format sample, not a real or
+     real-sounding member: naming a specific person here (even a mock one)
+     paired with "available for X advisory" reads as soliciting work for
+     them, which several of the councils ConnCT serves (Bar Council
+     especially) restrict regardless of ICAI's own MCS/attest distinction. -->
+<div class="flex items-start gap-space-md bg-surface-container-low p-space-md rounded-xl">
+<div class="w-16 h-16 rounded-xl bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[30px]">badge</span>
+</div>
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-space-xs">
+<h4 class="font-headline-md text-headline-md text-brand-navy-deep truncate">Sample Verified ID</h4>
+</div>
+<p class="font-label-md text-label-md text-primary font-semibold truncate">Format shown to every approved member</p>
+</div>
+</div>
+<!-- Verified Credentials Grid -->
+<div class="grid grid-cols-2 gap-space-sm bg-surface-container/50 p-space-sm rounded-xl">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Council MRN</span>
+<span class="font-label-md text-label-md font-mono text-brand-navy-deep">Matched to register</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Practice Category</span>
+<span class="font-label-md text-label-md font-semibold text-brand-navy-deep">Set at verification</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">COP Validity</span>
+<span class="font-label-md text-label-md text-verified-teal font-semibold">Synced with council register</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Jurisdiction</span>
+<span class="font-label-md text-label-md text-brand-navy-deep font-semibold">Self-declared, council-checked</span>
+</div>
+</div>
+<!-- Status line — describes the verification mechanism itself, not any
+     one member's availability. -->
+<div class="flex items-center gap-space-xs text-body-sm text-on-surface-variant pt-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-verified-teal"></span>
+<span>Re-validated automatically against the council register</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TRUST METRICS & STATUTORY BAR -->
+<section class="w-full bg-brand-navy-deep text-on-primary py-space-xl">
+<div class="max-w-[72rem] mx-auto px-gutter-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-lg text-center md:text-left">
+<div class="flex flex-col gap-space-2xs">
+<span class="font-display-lg text-display-lg text-on-primary font-bold">100%</span>
+<span class="font-label-md text-label-md text-surface-container-high">Membership Verified</span>
+<span class="font-body-sm text-body-sm text-outline-variant">Zero self-declared unverified profiles</span>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<span class="font-display-lg text-display-lg text-on-primary font-bold">Pan-India</span>
+<span class="font-label-md text-label-md text-surface-container-high">Jurisdiction Coverage</span>
+<span class="font-body-sm text-body-sm text-outline-variant">Supreme Court, High Courts, NCLT &amp; ITAT</span>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<span class="font-display-lg text-display-lg text-on-primary font-bold">Zero</span>
+<span class="font-label-md text-label-md text-surface-container-high">Fake Credentials</span>
+<span class="font-body-sm text-body-sm text-outline-variant">Automated council register validation</span>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<span class="font-display-lg text-display-lg text-on-primary font-bold">COP</span>
+<span class="font-label-md text-label-md text-surface-container-high">Authenticated</span>
+<span class="font-body-sm text-body-sm text-outline-variant">Compliant with non-solicitation rules</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: CONNECT & GET HIRED -->
+<section class="w-full bg-surface-canvas py-space-3xl">
+<div class="max-w-[72rem] mx-auto px-gutter-desktop flex flex-col gap-space-2xl">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="inline-flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Connect &amp; get hired</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-brand-navy-deep tracking-tight">
+            Every profile is checked.
+          </h2>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">
+            So every connection and every hire is one you can trust.
+          </p>
+</div>
+
+</div>
+<!-- Bento Grid (3 Cards) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Card 1: Connect with verified peers -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">handshake</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-brand-navy-deep">
+                Connect with verified peers in your profession
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Cross-refer specialized assignments across CAs, Legal Advocates, and Company Secretaries without dilution of quality.
+              </p>
+</div>
+<!-- Verified-council mix — describes WHO is on the network by council,
+     never a named individual paired with a specialization + "verified"
+     badge (that combination reads as advertising a specific person's
+     availability, the exact pattern several councils here restrict). -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">gavel</span>
+<span class="font-label-md text-label-md text-brand-navy-deep">Advocates</span>
+</div>
+<span class="px-space-xs py-[2px] rounded-full bg-verified-teal-subtle text-verified-teal font-label-sm text-label-sm">Bar Verified</span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">work</span>
+<span class="font-label-md text-label-md text-brand-navy-deep">Company Secretaries</span>
+</div>
+<span class="px-space-xs py-[2px] rounded-full bg-verified-teal-subtle text-verified-teal font-label-sm text-label-sm">ICSI Verified</span>
+</div>
+</div>
+</div>
+<!-- Tags list -->
+<div class="flex flex-wrap gap-space-2xs pt-space-xs">
+<span class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Transfer Pricing</span>
+<span class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Direct Tax Litigation</span>
+<span class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">IBC Resolution</span>
+</div>
+</div>
+<!-- Card 2: Find & hire in minutes -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">search</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-brand-navy-deep">
+                Find and hire the right professional in minutes
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Search verified practitioners by exact statutory mandate, court bench, council membership seniority, and verified jurisdiction.
+              </p>
+</div>
+<!-- Filter Controls Preview -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-xl">
+<span class="font-label-sm text-label-sm text-outline uppercase">Active Mandate Filter</span>
+<div class="flex flex-wrap gap-space-2xs">
+<span class="px-space-xs py-1 rounded-full bg-brand-navy-deep text-on-primary font-label-sm text-label-sm">GST Audit (FY 24-25)</span>
+<span class="px-space-xs py-1 rounded-full bg-surface-card text-on-surface font-label-sm text-label-sm shadow-sm">SEBI Compliance</span>
+<span class="px-space-xs py-1 rounded-full bg-surface-card text-on-surface font-label-sm text-label-sm shadow-sm">Delhi High Court</span>
+</div>
+<div class="pt-space-2xs flex items-center justify-between text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-verified-teal">done_all</span> 142 Matching Firms</span>
+<span class="text-primary font-label-md text-label-md">Direct Contact</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-brand-navy-deep font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px] text-primary">gavel</span>
+<span>Adheres strictly to council advertising guidelines</span>
+</div>
+</div>
+<!-- Card 3: Get notified on matching jobs -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">notifications_active</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-brand-navy-deep">
+                Get notified the moment a matching job opens
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Instant statutory opportunity dispatch for partner-level mandates, legal retainers, and specialized corporate counsel openings.
+              </p>
+</div>
+<!-- Job Notification Mockup -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-[2px] rounded bg-compliance-amber-subtle text-compliance-amber font-label-sm text-label-sm font-bold">HOT MANDATE</span>
+<span class="font-label-sm text-label-sm text-outline">12m ago</span>
+</div>
+<div class="font-label-md text-label-md text-brand-navy-deep">Statutory Auditor • Listed FinTech NBFC</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-space-xs">
+<span>Bengaluru / Hybrid</span>
+<span>•</span>
+<span>Req: 7+ Yrs FCA</span>
+</div>
+<div class="pt-space-2xs flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-verified-teal"></span>
+<span class="font-label-sm text-label-sm text-verified-teal">Direct Peer Referral Open</span>
+</div>
+</div>
+</div>
+<a class="inline-flex items-center justify-between text-primary font-label-md text-label-md hover:translate-x-1 transition-transform" data-path="network-and-hiring" href="#">
+<span>Explore network directory</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: COMPLIANCE, SIMPLIFIED (AI TAX, INSTANT CALC, DEADLINES) -->
+<section class="w-full bg-surface py-space-3xl">
+<div class="max-w-[72rem] mx-auto px-gutter-desktop flex flex-col gap-space-2xl">
+<!-- Section Title -->
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="inline-flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+<span>Work smarter</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-brand-navy-deep tracking-tight">
+          Compliance, simplified.
+        </h2>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">
+          AI tax answers, instant calculations, and deadlines you'll never miss.
+        </p>
+</div>
+<!-- 3-Column Interactive Compliance Bento -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
+<!-- AI Tax Assistant (Col 5) -->
+<div class="lg:col-span-4 bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+</div>
+<span class="px-space-xs py-1 rounded-full bg-verified-teal-subtle text-verified-teal font-label-sm text-label-sm font-semibold">
+                Income Tax Act 2024
+              </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-brand-navy-deep">
+              Ask the AI Tax Assistant
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Instant compliance answers grounded strictly in statutory notifications, CBDT circulars, and Supreme Court rulings.
+            </p>
+<!-- Query Simulation Box -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-body-sm text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[16px] text-primary">chat_bubble</span>
+<span>Sample Practitioner Query:</span>
+</div>
+<p class="font-body-sm text-body-sm text-brand-navy-deep italic bg-surface-card p-space-xs rounded-lg shadow-sm">
+                “Is a software consultant eligible for 44ADA presumptive taxation under New Tax Regime if turnover is ₹68 Lakhs?”
+              </p>
+<div class="flex flex-col gap-1 pt-space-2xs text-body-sm text-on-surface-variant">
+<div class="flex items-start gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-verified-teal shrink-0 mt-0.5">check</span>
+<span><strong>Yes.</strong> Threshold extended up to ₹75 Lakhs provided 95%+ receipts are digital (Sec 44ADA(1B)).</span>
+</div>
+<div class="flex items-start gap-1.5 text-outline">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">menu_book</span>
+<span>Ref: Finance Act 2023 CBDT Notification 28/2023</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-space-xs px-space-md rounded-xl bg-surface-container-high text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors text-center" type="button">
+            Open AI Legal Copilot
+          </button>
+</div>
+<!-- Instant Tax Calculation (Col 4) -->
+<div class="lg:col-span-4 bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md" id="tax-calc-widget">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">calculate</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">AY 2025-26</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-brand-navy-deep">
+              Calculate Tax Liability
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Simulate New vs Old Tax Regime liability in seconds without spreadsheets or manual calculation slips.
+            </p>
+<!-- Slider + Visual Output -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="income-slider">Gross Annual Income</label>
+<span class="font-headline-sm text-headline-sm font-bold text-primary" id="income-display">₹15,00,000</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="income-slider" max="3000000" min="500000" step="50000" type="range" value="1500000"/>
+<!-- Comparison bars -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<div class="p-space-xs rounded-lg bg-surface-card shadow-sm flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">New Regime (115BAC)</span>
+<span class="font-headline-sm text-headline-sm font-bold text-verified-teal" id="new-regime-tax">₹1,45,600</span>
+<span class="font-body-sm text-body-sm text-verified-teal font-semibold">Recommended</span>
+</div>
+<div class="p-space-xs rounded-lg bg-surface-card shadow-sm flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">Old Regime</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface" id="old-regime-tax">₹2,34,000</span>
+<span class="font-body-sm text-body-sm text-outline">Higher Liability</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
+<span>Includes 4% Health &amp; Education Cess</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">Standard Ded. ₹75k included</span>
+</div>
+</div>
+<!-- Statutory Filing Deadlines Tracker (Col 4) -->
+<div class="lg:col-span-4 bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">calendar_clock</span>
+</div>
+<span class="inline-flex items-center gap-1 px-space-xs py-1 rounded-full bg-compliance-amber-subtle text-compliance-amber font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-compliance-amber"></span>
+                3 DEADLINES NEAR
+              </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-brand-navy-deep">
+              Statutory Deadlines Tracker
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Track actual ITR, GST, TDS and MCA filing deadlines with auto-calculated late fees &amp; interest flags.
+            </p>
+<!-- Upcoming Deadlines List -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between p-space-xs rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-space-xs">
+<div class="px-2 py-1 rounded-lg bg-alert-rose-subtle text-alert-rose font-bold text-label-sm">20th</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-brand-navy-deep leading-tight">GSTR-3B Monthly Return</span>
+<span class="font-body-sm text-body-sm text-outline">Turnover &gt; ₹5 Crore (Sec 39)</span>
+</div>
+</div>
+<span class="px-space-xs py-1 rounded bg-surface-card text-alert-rose font-label-sm text-label-sm font-semibold shadow-sm">4 Days Left</span>
+</div>
+<div class="flex items-center justify-between p-space-xs rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-space-xs">
+<div class="px-2 py-1 rounded-lg bg-compliance-amber-subtle text-compliance-amber font-bold text-label-sm">30th</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-brand-navy-deep leading-tight">MCA Form AOC-4</span>
+<span class="font-body-sm text-body-sm text-outline">Annual Financial Statements Filing</span>
+</div>
+</div>
+<span class="px-space-xs py-1 rounded bg-surface-card text-compliance-amber font-label-sm text-label-sm font-semibold shadow-sm">14 Days Left</span>
+</div>
+<div class="flex items-center justify-between p-space-xs rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-space-xs">
+<div class="px-2 py-1 rounded-lg bg-surface-card text-on-surface font-bold text-label-sm">07th</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-brand-navy-deep leading-tight">TDS / TCS Challan 281</span>
+<span class="font-body-sm text-body-sm text-outline">Tax Deducted for Prev Month</span>
+</div>
+</div>
+<span class="px-space-xs py-1 rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-sm">Upcoming</span>
+</div>
+</div>
+</div>
+<a class="inline-flex items-center justify-between text-primary font-label-md text-label-md hover:translate-x-1 transition-transform" data-path="statutory-deadlines" href="#">
+<span>Sync with Google / Outlook Calendar</span>
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: VISIBILITY MEETS COMMUNITY -->
+<section class="w-full bg-surface-canvas py-space-3xl">
+<div class="max-w-[72rem] mx-auto px-gutter-desktop flex flex-col gap-space-2xl">
+<!-- Section Header -->
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="inline-flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+<span>Keep growing</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-brand-navy-deep tracking-tight">
+          Visibility meets community.
+        </h2>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">
+          Publish your work and stay connected with your profession.
+        </p>
+</div>
+<!-- 2-Card Featured Showcase -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-xl">
+<!-- Card Left: Publish Articles -->
+<div class="bg-surface-card rounded-2xl p-space-xl shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">article</span>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Peer Reviewed</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-lg text-headline-lg text-brand-navy-deep">
+                Publish articles that build your professional reputation
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Write statutory commentaries, case law digests, and tax notes that are distributed to vetted practitioners across India without commercial noise.
+              </p>
+</div>
+<!-- Published Article Card Mock -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-body-sm text-on-surface-variant">
+<span class="px-space-xs py-[2px] rounded bg-primary-container text-on-primary font-label-sm text-label-sm">Tax Advisory</span>
+<span>•</span>
+<span>6 min read</span>
+<span>•</span>
+<span class="text-verified-teal font-semibold">1,420 Verified CAs Read</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-brand-navy-deep">
+                Navigating GST Audit Traps: Input Tax Credit Reversals under Section 16(4) After Judicial Rulings
+              </h4>
+<div class="flex items-center justify-between pt-space-2xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-body-sm">PV</div>
+<span class="font-label-md text-label-md text-brand-navy-deep">CA Priya Venkatesh, Chennai</span>
+</div>
+<div class="flex items-center gap-space-xs text-body-sm text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">thumb_up</span> 184</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bookmark</span> 92</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Zero clickbait. Direct council member citations.</span>
+<a class="text-primary font-label-md text-label-md hover:underline inline-flex items-center gap-1" data-path="community" href="#">
+<span>Explore Research Papers</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card Right: Join Events & Groups -->
+<div class="bg-surface-card rounded-2xl p-space-xl shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">groups_3</span>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-verified-teal-subtle text-verified-teal font-label-sm text-label-sm font-bold">
+                CPE Hours Eligible
+              </span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-lg text-headline-lg text-brand-navy-deep">
+                Join events and groups built for your profession
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Participate in verified virtual study circles, cross-practice symposiums with High Court Advocates, and structured CPE sessions.
+              </p>
+</div>
+<!-- Event Card Mock -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-[2px] rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">UPCOMING LIVE ROUNDTABLE</span>
+<span class="font-label-sm text-label-sm text-outline">Oct 26, 2025 • 4:00 PM IST</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-brand-navy-deep">
+                Mastering MCA V3 Portal Filings &amp; Company Secretarial Audits for Fast-Growing Private Firms
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Joint session led by senior ICSI council fellows and legal counsel handling Ministry of Corporate Affairs compliance.
+              </p>
+<div class="flex items-center justify-between pt-space-2xs">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center text-label-sm font-bold ring-2 ring-surface-card">CS</div>
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-label-sm font-bold ring-2 ring-surface-card">CA</div>
+<div class="w-7 h-7 rounded-full bg-brand-navy-deep text-on-primary flex items-center justify-center text-label-sm font-bold ring-2 ring-surface-card">+410</div>
+</div>
+<span class="px-space-sm py-1 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold">Reserve Member Seat</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Organized strictly by statutory chapters.</span>
+<a class="text-primary font-label-md text-label-md hover:underline inline-flex items-center gap-1" data-path="community" href="#">
+<span>View All Study Circles</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA DOWNLOAD BANNER -->
+<section class="w-full bg-gradient-to-br from-brand-navy-deep via-primary to-brand-navy-deep text-on-primary py-space-3xl relative overflow-hidden">
+<!-- Decorative background ambient shapes -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-brand-blue-vibrant/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-20 -top-20 w-96 h-96 bg-verified-teal/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-[72rem] mx-auto px-gutter-desktop relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<!-- CTA Copy -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-surface-container-lowest/15 text-surface-bright self-start font-label-sm text-label-sm backdrop-blur">
+<span class="material-symbols-outlined text-[16px] text-verified-teal">verified</span>
+<span>GET STARTED TODAY</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-primary tracking-tight font-bold">
+            Join ConnCT today.
+          </h2>
+<p class="font-headline-sm text-headline-sm text-surface-container-high font-normal max-w-xl">
+            Download the app and build your professional future with 100% verified credibility.
+          </p>
+<!-- App Store Action + Trust guarantee -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center gap-space-sm px-space-xl py-space-sm bg-surface-container-lowest text-brand-navy-deep rounded-xl shadow-lg hover:bg-surface-bright transition-all active:scale-95 group" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[30px] text-primary group-hover:scale-110 transition-transform">shop</span>
+<div class="flex flex-col text-left">
+<span class="font-label-sm text-label-sm text-outline uppercase leading-tight font-bold">GET IT ON</span>
+<span class="font-headline-sm text-headline-sm font-bold text-brand-navy-deep leading-tight">Google Play</span>
+</div>
+</a>
+</div>
+<div class="flex flex-wrap items-center gap-space-lg pt-space-xs text-body-sm text-surface-container-high">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-verified-teal">lock</span> End-to-End Encrypted</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-verified-teal">verified</span> COP Registry Checked</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-verified-teal">gavel</span> BCI &amp; ICAI Compliant</span>
+</div>
+</div>
+<!-- Phone App Card Preview Illustration -->
+<div class="lg:col-span-4 flex justify-center">
+<div class="w-full max-w-sm bg-surface-container-lowest text-on-surface rounded-3xl p-space-md shadow-2xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between p-space-xs">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<div class="w-3 h-3 rounded-full bg-compliance-amber"></div>
+<div class="w-3 h-3 rounded-full bg-verified-teal"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">ConnCT Mobile App</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-2xl flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+<span class="font-label-md text-label-md text-brand-navy-deep">Your Practice in Your Pocket</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Instant statutory notifications, tax calculator copilot, peer network search, and firm directory.
+              </p>
+</div>
+<div class="grid grid-cols-2 gap-space-xs text-center">
+<div class="p-space-xs bg-surface-container rounded-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">₹0</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Free for verified professionals</p>
+</div>
+<div class="p-space-xs bg-surface-container rounded-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-verified-teal">&lt; 2 Min</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Quick verification flow</p>
+</div>
+</div>
+<a class="w-full py-space-xs rounded-xl bg-primary-container text-on-primary text-center font-label-md text-label-md shadow-sm hover:bg-primary transition-colors" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals">
+              Install Android APK
+            </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Tax Calculator Script -->
+<script>
+    (function initTaxCalculator() {
+      const slider = document.getElementById('income-slider');
+      const incomeDisplay = document.getElementById('income-display');
+      const newRegimeDisplay = document.getElementById('new-regime-tax');
+      const oldRegimeDisplay = document.getElementById('old-regime-tax');
+
+      if (!slider || !incomeDisplay || !newRegimeDisplay || !oldRegimeDisplay) return;
+
+      function formatINR(val) {
+        return '₹' + Math.round(val).toLocaleString('en-IN');
+      }
+
+      function computeTax() {
+        const gross = parseFloat(slider.value);
+        incomeDisplay.textContent = formatINR(gross);
+
+        // New Tax Regime calculation (FY 24-25 / AY 25-26 under Sec 115BAC with std deduction 75k)
+        let taxableNew = Math.max(0, gross - 75000);
+        let taxNew = 0;
+
+        if (taxableNew <= 700000) {
+          taxNew = 0; // Sec 87A rebate
+        } else {
+          // Slabs: 0-3L: nil, 3-7L: 5%, 7-10L: 10%, 10-12L: 15%, 12-15L: 20%, >15L: 30%
+          if (taxableNew > 300000) {
+            taxNew += Math.min(400000, taxableNew - 300000) * 0.05;
+          }
+          if (taxableNew > 700000) {
+            taxNew += Math.min(300000, taxableNew - 700000) * 0.10;
+          }
+          if (taxableNew > 1000000) {
+            taxNew += Math.min(200000, taxableNew - 1000000) * 0.15;
+          }
+          if (taxableNew > 1200000) {
+            taxNew += Math.min(300000, taxableNew - 1200000) * 0.20;
+          }
+          if (taxableNew > 1500000) {
+            taxNew += (taxableNew - 1500000) * 0.30;
+          }
+          taxNew = taxNew * 1.04; // 4% Cess
+        }
+
+        // Old Tax Regime calculation (Approx with std deduction 50k and 80C 1.5L)
+        let taxableOld = Math.max(0, gross - 200000);
+        let taxOld = 0;
+        if (taxableOld <= 500000) {
+          taxOld = 0;
+        } else {
+          if (taxableOld > 250000) taxOld += Math.min(250000, taxableOld - 250000) * 0.05;
+          if (taxableOld > 500000) taxOld += Math.min(500000, taxableOld - 500000) * 0.20;
+          if (taxableOld > 1000000) taxOld += (taxableOld - 1000000) * 0.30;
+          taxOld = taxOld * 1.04;
+        }
+
+        newRegimeDisplay.textContent = formatINR(taxNew);
+        oldRegimeDisplay.textContent = formatINR(taxOld);
+      }
+
+      slider.addEventListener('input', computeTax);
+      computeTax();
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-low"><div class="max-w-[72rem] mx-auto px-gutter-desktop pt-space-3xl pb-space-2xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-2xl mb-space-2xl"><div class="lg:col-span-2 flex flex-col gap-space-md"><div class="flex items-center gap-space-xs"><img alt="ConnCT logo" class="h-8 w-auto object-contain" src="/assets/logo.png"/><span class="font-headline-md text-headline-md text-brand-navy-deep">ConnCT</span><span class="px-space-xs py-space-2xs rounded-full bg-verified-teal-subtle text-verified-teal font-label-sm text-label-sm">Verified</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">India's first certified professional network engineered exclusively for Chartered Accountants, Company Secretaries, Cost &amp; Management Accountants, and Advocates.</p><div class="flex flex-col gap-space-xs mt-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Recognized Statutory Standards</span><div class="flex flex-wrap items-center gap-space-xs"><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">ICAI</span><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">ICSI</span><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">ICMAI</span><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">Bar Council</span></div></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Network</span><nav class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="network-and-hiring" href="#">Chartered Accountants</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="network-and-hiring" href="#">Company Secretaries</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="network-and-hiring" href="#">CMA Practitioners</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="network-and-hiring" href="#">Legal Advocates</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="community" href="#">Specialized Circles</a></nav></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Statutory &amp; Tools</span><nav class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="statutory-deadlines" href="#">GST &amp; Income Tax Deadlines</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="statutory-deadlines" href="#">MCA Compliance Tracker</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="compliance-and-ai" href="#">ConnCT AI Copilot</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="compliance-and-ai" href="#">Regulatory Gazette Feed</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="why-connct" href="#">COP Verification Hub</a></nav></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Compliance &amp; Legal</span><nav class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="privacy-policy" href="#">Privacy &amp; DPDP Act</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="terms-of-service" href="#">Terms &amp; Code of Conduct</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="disclaimer" href="#">Council Disclaimers</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="security" href="#">Data Security &amp; Encryption</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" data-path="help-center" href="#">Support &amp; Grievance</a></nav></div></div><div class="pt-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md bg-surface-container/50 p-space-md rounded-xl"><p class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left">ConnCT is an independent peer professional directory and practice intelligence platform. It is not affiliated directly with ICAI, ICSI, ICMAI, or the Bar Council of India. Council rules prohibiting professional solicitation and advertisement are rigorously respected.</p><p class="font-label-sm text-label-sm text-on-surface-variant shrink-0">© 2026 ConnCT. All rights reserved.</p></div></div></footer>
+  </div>
 
 <script>
-  var maxStage = 5;
+  var maxStage = 4;
   var current = 0;
   var dots = document.querySelectorAll('.progress span');
+  var introWrap = document.getElementById('intro-wrap');
+  var fullSite = document.getElementById('full-site');
+
+  function revealFullSite() {
+    // Fades the orb intro out, then hands off to the full scrolling page —
+    // restores normal document flow (the intro locks scroll/cursor/
+    // selection for its own full-viewport click experience, none of which
+    // the full site wants).
+    introWrap.style.transition = 'opacity 0.5s ease';
+    introWrap.style.opacity = '0';
+    document.body.classList.add('site-revealed');
+    setTimeout(function () {
+      introWrap.style.display = 'none';
+      fullSite.style.display = 'block';
+      window.scrollTo(0, 0);
+    }, 500);
+  }
 
   function render() {
     document.body.setAttribute('data-stage', String(current));
     dots.forEach(function (d, i) { d.classList.toggle('done', i <= current); });
   }
   function advance(e) {
-    current = current < maxStage ? current + 1 : 0;
+    if (current >= maxStage) {
+      revealFullSite();
+      return;
+    }
+    current = current + 1;
     render();
   }
   render();
