@@ -101,6 +101,26 @@
     user-select: auto;
   }
 
+  /* Material Symbols is a ~950KB font — Google serves the same full
+     2500+-icon glyph set regardless of which weight/fill/grade point is
+     requested, so there's no lighter version to switch to. Until it
+     finishes loading, the raw ligature text (e.g. "groups",
+     "psychology") renders as an actual readable word in the fallback
+     font, which visibly breaks and misaligns every row that pairs an
+     icon with adjacent text — exactly this. Clipping every icon to its
+     own 1em square means the worst case during that load window is an
+     empty/clipped box, never a wall of wrong text — and the icon needs
+     zero relayout once the real glyph is ready, since the box was
+     already sized for it. */
+  .material-symbols-outlined {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+  }
+
   /* Jumping to an in-page anchor (the nav links, footer links) lands the
      section flush under the fixed 80px header otherwise — its own top
      content sits hidden behind the header rather than just below it.
