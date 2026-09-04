@@ -62,13 +62,50 @@
      bottom), the intro's full-viewport click-lock layout has to give way
      to an ordinary scrolling document — real text selection, a normal
      cursor, natural height instead of a pinned 100dvh circle stage. */
+  html.site-revealed, body.site-revealed {
+    height: auto;
+    overflow: auto;
+  }
   body.site-revealed {
     display: block;
-    height: auto;
     min-height: 0;
-    overflow: auto;
     cursor: default;
     user-select: auto;
+  }
+
+  /* Jumping to an in-page anchor (the nav links, footer links) lands the
+     section flush under the fixed 80px header otherwise — its own top
+     content sits hidden behind the header rather than just below it. */
+  #why-connct, #network-and-hiring, #compliance-and-ai, #community {
+    scroll-margin-top: 96px;
+  }
+
+  /* Frosted-glass card surface — replaces the flat white + hard drop
+     shadow every feature/hero card used. Real glassmorphism: translucent
+     enough that the soft blurred color blobs already sitting behind the
+     hero card show through and tint it, a faint hairline border standing
+     in for a hard outline, and a much softer, more diffused shadow than
+     Tailwind's default `shadow-sm`/`shadow-xl` — closer to how iOS/macOS
+     actually render an elevated glass panel. */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.03), 0 16px 40px -12px rgba(15, 23, 42, 0.14);
+  }
+  .glass-card:hover {
+    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04), 0 24px 48px -12px rgba(15, 23, 42, 0.18);
+  }
+  /* A darker glass variant for panels sitting on the navy sections
+     (the stats bar, the final CTA), where the light .glass-card would
+     have no contrast against a dark ground. */
+  .glass-card-dark {
+    background: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 16px 40px -16px rgba(0, 0, 0, 0.35);
   }
 
   .glow {
@@ -499,7 +536,7 @@
 <div class="absolute -top-10 -right-10 w-72 h-72 bg-brand-blue-vibrant/10 rounded-full blur-3xl pointer-events-none"></div>
 <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-verified-teal/10 rounded-full blur-3xl pointer-events-none"></div>
 <!-- Pass Card Frame -->
-<div class="relative bg-surface-card rounded-2xl shadow-xl p-space-lg flex flex-col gap-space-md">
+<div class="relative glass-card rounded-2xl p-space-lg flex flex-col gap-space-md">
 <!-- Header bar of pass -->
 <div class="flex items-center justify-between">
 <div class="flex items-center gap-space-xs">
@@ -561,25 +598,27 @@
 </div>
 </section>
 <!-- TRUST METRICS & STATUTORY BAR -->
-<section class="w-full bg-brand-navy-deep text-on-primary py-space-xl">
-<div class="max-w-[72rem] mx-auto px-gutter-desktop">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-space-lg text-center md:text-left">
-<div class="flex flex-col gap-space-2xs">
+<section class="w-full py-space-2xl relative overflow-hidden" style="background: linear-gradient(135deg, #001B47 0%, #002B66 45%, #0A3D8F 100%);">
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue-vibrant/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-verified-teal/15 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-[72rem] mx-auto px-gutter-desktop relative z-10">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+<div class="glass-card-dark rounded-2xl p-space-lg flex flex-col gap-space-2xs text-center md:text-left">
 <span class="font-display-lg text-display-lg text-on-primary font-bold">100%</span>
 <span class="font-label-md text-label-md text-surface-container-high">Membership Verified</span>
 <span class="font-body-sm text-body-sm text-outline-variant">Zero self-declared unverified profiles</span>
 </div>
-<div class="flex flex-col gap-space-2xs">
+<div class="glass-card-dark rounded-2xl p-space-lg flex flex-col gap-space-2xs text-center md:text-left">
 <span class="font-display-lg text-display-lg text-on-primary font-bold">Pan-India</span>
 <span class="font-label-md text-label-md text-surface-container-high">Jurisdiction Coverage</span>
 <span class="font-body-sm text-body-sm text-outline-variant">Supreme Court, High Courts, NCLT &amp; ITAT</span>
 </div>
-<div class="flex flex-col gap-space-2xs">
+<div class="glass-card-dark rounded-2xl p-space-lg flex flex-col gap-space-2xs text-center md:text-left">
 <span class="font-display-lg text-display-lg text-on-primary font-bold">Zero</span>
 <span class="font-label-md text-label-md text-surface-container-high">Fake Credentials</span>
 <span class="font-body-sm text-body-sm text-outline-variant">Automated council register validation</span>
 </div>
-<div class="flex flex-col gap-space-2xs">
+<div class="glass-card-dark rounded-2xl p-space-lg flex flex-col gap-space-2xs text-center md:text-left">
 <span class="font-display-lg text-display-lg text-on-primary font-bold">COP</span>
 <span class="font-label-md text-label-md text-surface-container-high">Authenticated</span>
 <span class="font-body-sm text-body-sm text-outline-variant">Compliant with non-solicitation rules</span>
@@ -609,7 +648,7 @@
 <!-- Bento Grid (3 Cards) -->
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
 <!-- Card 1: Connect with verified peers -->
-<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="glass-card rounded-2xl p-space-lg flex flex-col justify-between gap-space-lg transition-shadow">
 <div class="flex flex-col gap-space-md">
 <div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
 <span class="material-symbols-outlined text-[26px]">handshake</span>
@@ -651,7 +690,7 @@
 </div>
 </div>
 <!-- Card 2: Find & hire in minutes -->
-<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="glass-card rounded-2xl p-space-lg flex flex-col justify-between gap-space-lg transition-shadow">
 <div class="flex flex-col gap-space-md">
 <div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
 <span class="material-symbols-outlined text-[26px]">search</span>
@@ -684,7 +723,7 @@
 </div>
 </div>
 <!-- Card 3: Get notified on matching jobs -->
-<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="glass-card rounded-2xl p-space-lg flex flex-col justify-between gap-space-lg transition-shadow">
 <div class="flex flex-col gap-space-md">
 <div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
 <span class="material-symbols-outlined text-[26px]">notifications_active</span>
@@ -742,7 +781,7 @@
 <!-- 3-Column Interactive Compliance Bento -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
 <!-- AI Tax Assistant (Col 5) -->
-<div class="lg:col-span-4 bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div class="lg:col-span-4 glass-card rounded-2xl p-space-lg flex flex-col justify-between gap-space-md transition-shadow">
 <div class="flex flex-col gap-space-sm">
 <div class="flex items-center justify-between">
 <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
@@ -784,7 +823,7 @@
           </a>
 </div>
 <!-- Instant Tax Calculation (Col 4) -->
-<div class="lg:col-span-4 bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md" id="tax-calc-widget">
+<div class="lg:col-span-4 glass-card rounded-2xl p-space-lg flex flex-col justify-between gap-space-md transition-shadow" id="tax-calc-widget">
 <div class="flex flex-col gap-space-sm">
 <div class="flex items-center justify-between">
 <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
@@ -826,7 +865,7 @@
 </div>
 </div>
 <!-- Statutory Filing Deadlines Tracker (Col 4) -->
-<div class="lg:col-span-4 bg-surface-card rounded-2xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div class="lg:col-span-4 glass-card rounded-2xl p-space-lg flex flex-col justify-between gap-space-md transition-shadow">
 <div class="flex flex-col gap-space-sm">
 <div class="flex items-center justify-between">
 <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
@@ -904,7 +943,7 @@
 <!-- 2-Card Featured Showcase -->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-xl">
 <!-- Card Left: Publish Articles -->
-<div class="bg-surface-card rounded-2xl p-space-xl shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="glass-card rounded-2xl p-space-xl flex flex-col justify-between gap-space-lg transition-shadow">
 <div class="flex flex-col gap-space-md">
 <div class="flex items-center justify-between">
 <div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
@@ -953,7 +992,7 @@
 </div>
 </div>
 <!-- Card Right: Join Events & Groups -->
-<div class="bg-surface-card rounded-2xl p-space-xl shadow-sm flex flex-col justify-between gap-space-lg hover:shadow-md transition-shadow">
+<div class="glass-card rounded-2xl p-space-xl flex flex-col justify-between gap-space-lg transition-shadow">
 <div class="flex flex-col gap-space-md">
 <div class="flex items-center justify-between">
 <div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
@@ -1159,6 +1198,7 @@
     introWrap.style.transition = 'opacity 0.5s ease';
     introWrap.style.opacity = '0';
     document.body.classList.add('site-revealed');
+    document.documentElement.classList.add('site-revealed');
     setTimeout(function () {
       introWrap.style.display = 'none';
       fullSite.style.display = 'block';
