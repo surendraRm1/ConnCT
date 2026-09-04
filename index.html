@@ -427,7 +427,7 @@
   </div><!-- /#intro-wrap -->
 
   <div id="full-site" style="display:none;">
-<header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[72rem] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-xs" href="#top"><img alt="ConnCT logo" class="h-8 w-auto object-contain" src="/assets/logo.png"/><span class="font-headline-md text-headline-md text-brand-navy-deep tracking-tight">Conn<span class="mirror-c">C</span>T</span></a><div class="hidden sm:flex items-center gap-space-2xs px-space-xs py-space-2xs rounded-full bg-verified-teal-subtle text-verified-teal"><span class="material-symbols-outlined text-[14px]">verified</span><span class="font-label-sm text-label-sm uppercase">India Certified</span></div></div><nav class="hidden xl:flex items-center gap-space-lg"><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#why-connct">Why ConnCT</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#network-and-hiring">Network &amp; Hiring</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#compliance-and-ai">Compliance &amp; AI</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#community">Community</a></nav><div class="flex items-center gap-space-sm"><a class="inline-flex items-center gap-space-xs px-space-md py-space-xs bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary transition-all active:scale-95" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined text-[18px]">shop</span><span class="whitespace-nowrap">Get the App</span></a></div></div></header><main id="top" class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[72rem] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-xs" href="#top"><img alt="ConnCT logo" class="h-8 w-auto object-contain" src="/assets/logo.png"/><span class="font-headline-md text-headline-md text-brand-navy-deep tracking-tight">Conn<span class="mirror-c">C</span>T</span></a><div class="hidden sm:flex items-center gap-space-2xs px-space-xs py-space-2xs rounded-full bg-verified-teal-subtle text-verified-teal"><span class="material-symbols-outlined text-[14px]">verified</span><span class="font-label-sm text-label-sm uppercase">India Certified</span></div></div><nav class="hidden xl:flex items-center gap-space-lg"><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#why-connct">Why ConnCT</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#network-and-hiring">Network &amp; Hiring</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#compliance-and-ai">Compliance &amp; AI</a><a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#community">Community</a></nav><div class="flex items-center gap-space-sm"><a class="hidden sm:inline-flex items-center gap-space-xs px-space-md py-space-xs bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary transition-all active:scale-95" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined text-[18px]">shop</span><span class="whitespace-nowrap">Get the App</span></a><button class="xl:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false" id="mobile-nav-btn" type="button"><span class="material-symbols-outlined text-[26px] text-brand-navy-deep" id="mobile-nav-icon">menu</span></button></div></div><nav id="mobile-nav" class="xl:hidden hidden flex-col gap-1 px-gutter-desktop pb-space-md border-t border-border-subtle bg-surface-container-lowest"><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#why-connct" onclick="closeMobileNav()">Why ConnCT</a><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#network-and-hiring" onclick="closeMobileNav()">Network &amp; Hiring</a><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#compliance-and-ai" onclick="closeMobileNav()">Compliance &amp; AI</a><a class="py-space-sm font-label-lg text-label-lg text-on-surface hover:text-primary transition-colors" href="#community" onclick="closeMobileNav()">Community</a><a class="sm:hidden mt-space-xs inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm bg-primary-container text-on-primary font-label-md text-label-md rounded-lg" href="https://play.google.com/store/apps/details?id=com.connct.connect_professionals" target="_blank" rel="noopener noreferrer" onclick="closeMobileNav()"><span class="material-symbols-outlined text-[18px]">shop</span>Get the App</a></nav></header><main id="top" class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
 <!-- Top Subtle Trust Banner -->
 <section class="w-full bg-surface-container-high/40 py-space-xs">
 <div class="max-w-[72rem] mx-auto px-gutter-desktop flex flex-wrap items-center justify-between gap-space-sm text-body-sm text-on-surface-variant font-body-sm">
@@ -1204,6 +1204,33 @@
       fullSite.style.display = 'block';
       window.scrollTo(0, 0);
     }, 500);
+  }
+
+  // Header nav below the xl breakpoint (~1280px — most phones and plenty
+  // of laptop windows) has nothing else to show it: no hamburger meant
+  // the whole nav was simply invisible there, not just visually awkward.
+  function toggleMobileNav() {
+    var nav = document.getElementById('mobile-nav');
+    var icon = document.getElementById('mobile-nav-icon');
+    var btn = document.getElementById('mobile-nav-btn');
+    var isOpen = !nav.classList.contains('hidden');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      nav.classList.remove('hidden');
+      nav.classList.add('flex');
+      icon.textContent = 'close';
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+  function closeMobileNav() {
+    var nav = document.getElementById('mobile-nav');
+    var icon = document.getElementById('mobile-nav-icon');
+    var btn = document.getElementById('mobile-nav-btn');
+    nav.classList.add('hidden');
+    nav.classList.remove('flex');
+    icon.textContent = 'menu';
+    btn.setAttribute('aria-expanded', 'false');
   }
 
   function render() {
