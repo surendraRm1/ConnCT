@@ -1035,12 +1035,16 @@
 <div class="max-w-[80rem] mx-auto px-gutter-desktop flex flex-col gap-space-2xl">
 <!-- Section Header -->
 <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-lg">
-<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="flex flex-col gap-space-xs max-w-2xl lg:max-w-none">
 <div class="inline-flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
 <span class="material-symbols-outlined text-[18px]">groups</span>
 <span>Keep growing</span>
 </div>
-<h2 class="font-display-lg text-display-lg text-brand-navy-deep tracking-tight">
+<!-- max-w-2xl (42rem) forced this specific heading to wrap after
+     "meets" -- there's real room for it on one line beside the icon
+     tile on any actual desktop viewport, the cap was just tighter than
+     it needed to be for this particular string's length. -->
+<h2 class="font-display-lg text-display-lg text-brand-navy-deep tracking-tight lg:whitespace-nowrap">
           Visibility meets community.
         </h2>
 <p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">
