@@ -351,12 +351,15 @@
     opacity: 1;
     transition: opacity 0.5s ease;
   }
-  /* Was scaleX(-1) -- mirrored this C backwards, which never matched the
-     real logo mark (assets/logo.png): a plain, normal-orientation C built
-     from a node/network graphic, not a reversed one. Removed the flip so
-     the wordmark's C actually reads as the same letter the icon shows. */
-  .wordmark .mirror-c {
+  /* Mirrors the closing C so it "faces back" toward the C-shaped logo
+     mark at the start of the word -- Conn[C] ... [C]T bracketing the
+     wordmark, the same idea as a closing parenthesis facing its opener.
+     Previously scoped to only the intro splash's giant .wordmark h1, so
+     the small header/footer logo text never got it at all -- widened to
+     every .mirror-c so the header and footer match the intro. */
+  .mirror-c {
     display: inline-block;
+    transform: scaleX(-1);
   }
 
   .eyebrow {
@@ -718,7 +721,13 @@
 <!-- SECTION: CONNECT & GET HIRED -->
 <section id="network-and-hiring" class="snap-section w-full bg-surface-canvas py-space-3xl">
 <div class="max-w-[80rem] mx-auto px-gutter-desktop flex flex-col gap-space-2xl">
-<!-- Section Header -->
+<!-- Section Header -- a plain single column wastes the right half of a
+     wide screen with nothing beside a short heading; paired with a large
+     decorative icon tile instead of a fabricated stat, so the space is
+     used without inventing a number. Hidden below md: two stacked blocks
+     of similar visual weight looks worse on a narrow screen than the
+     icon simply not being there. -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-lg">
 <div class="flex flex-col gap-space-xs max-w-2xl">
 <div class="inline-flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
 <span class="material-symbols-outlined text-[18px]">verified</span>
@@ -730,6 +739,11 @@
 <p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">
             So every connection and every hire is one you can trust.
           </p>
+</div>
+<div class="hidden md:flex relative w-28 h-28 shrink-0 items-center justify-center rounded-3xl bg-surface-container-high">
+<div class="absolute inset-0 rounded-3xl bg-verified-teal/10 blur-2xl"></div>
+<span class="material-symbols-outlined relative text-primary" style="font-size:56px;">verified</span>
+</div>
 </div>
 <!-- Bento Grid (3 Cards) -->
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
@@ -852,6 +866,7 @@
 <section id="compliance-and-ai" class="snap-section w-full bg-surface py-space-3xl">
 <div class="max-w-[80rem] mx-auto px-gutter-desktop flex flex-col gap-space-2xl">
 <!-- Section Title -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-lg">
 <div class="flex flex-col gap-space-xs max-w-2xl">
 <div class="inline-flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
 <span class="material-symbols-outlined text-[18px]">psychology</span>
@@ -863,6 +878,11 @@
 <p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">
           AI tax answers, instant calculations, and deadlines you'll never miss.
         </p>
+</div>
+<div class="hidden md:flex relative w-28 h-28 shrink-0 items-center justify-center rounded-3xl bg-surface-container-high">
+<div class="absolute inset-0 rounded-3xl bg-brand-blue-vibrant/10 blur-2xl"></div>
+<span class="material-symbols-outlined relative text-primary" style="font-size:56px;">psychology</span>
+</div>
 </div>
 <!-- 3-Column Interactive Compliance Bento -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
@@ -1014,6 +1034,7 @@
 <section id="community" class="snap-section w-full bg-surface-canvas py-space-3xl">
 <div class="max-w-[80rem] mx-auto px-gutter-desktop flex flex-col gap-space-2xl">
 <!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-lg">
 <div class="flex flex-col gap-space-xs max-w-2xl">
 <div class="inline-flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
 <span class="material-symbols-outlined text-[18px]">groups</span>
@@ -1025,6 +1046,11 @@
 <p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">
           Publish your work and stay connected with your profession.
         </p>
+</div>
+<div class="hidden md:flex relative w-28 h-28 shrink-0 items-center justify-center rounded-3xl bg-surface-container-high">
+<div class="absolute inset-0 rounded-3xl bg-secondary/10 blur-2xl"></div>
+<span class="material-symbols-outlined relative text-primary" style="font-size:56px;">groups</span>
+</div>
 </div>
 <!-- 2-Card Featured Showcase -->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-xl">
