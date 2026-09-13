@@ -86,7 +86,13 @@
     html.site-revealed { scroll-snap-type: none; }
   }
   .snap-section {
-    scroll-margin-top: 96px;
+    /* Must exactly match the fixed header's real height (h-20 = 80px) --
+       the previous 96px left a 16px gap that scroll-snapped in a sliver
+       of whatever section sits immediately above, invisible against a
+       light background but a visible stray blue line whenever the
+       preceding section happens to be the dark navy trust-metrics bar
+       (e.g. landing on #network-and-hiring). */
+    scroll-margin-top: 80px;
     scroll-snap-align: start;
   }
   body {
@@ -648,7 +654,7 @@
 <div class="grid grid-cols-2 gap-space-sm bg-surface-container/50 p-space-sm rounded-xl">
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Council MRN</span>
-<span class="font-label-md text-label-md font-mono text-brand-navy-deep">Matched to register</span>
+<span class="font-label-md text-label-md font-mono text-brand-navy-deep">Provided at sign-up</span>
 </div>
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Practice Category</span>
@@ -656,18 +662,21 @@
 </div>
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">COP Validity</span>
-<span class="font-label-md text-label-md text-verified-teal font-semibold">Synced with council register</span>
+<span class="font-label-md text-label-md text-verified-teal font-semibold">Confirmed at review</span>
 </div>
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Jurisdiction</span>
-<span class="font-label-md text-label-md text-brand-navy-deep font-semibold">Self-declared, council-checked</span>
+<span class="font-label-md text-label-md text-brand-navy-deep font-semibold">Self-declared, document-checked</span>
 </div>
 </div>
 <!-- Status line — describes the verification mechanism itself, not any
-     one member's availability. -->
+     one member's availability. Deliberately says "reviewed by hand," not
+     "automatically validated against the council register" -- no such
+     live registry integration exists in this app; verification is a
+     real document upload checked by a human reviewer, not an API call. -->
 <div class="flex items-center gap-space-xs text-body-sm text-on-surface-variant pt-space-xs">
 <span class="w-2.5 h-2.5 rounded-full bg-verified-teal"></span>
-<span>Re-validated automatically against the council register</span>
+<span>Every submission reviewed by hand before the badge is granted</span>
 </div>
 </div>
 </div>
@@ -707,7 +716,6 @@
 <section id="network-and-hiring" class="snap-section w-full bg-surface-canvas py-space-3xl">
 <div class="max-w-[80rem] mx-auto px-gutter-desktop flex flex-col gap-space-2xl">
 <!-- Section Header -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
 <div class="flex flex-col gap-space-xs max-w-2xl">
 <div class="inline-flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
 <span class="material-symbols-outlined text-[18px]">verified</span>
@@ -719,8 +727,6 @@
 <p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">
             So every connection and every hire is one you can trust.
           </p>
-</div>
-
 </div>
 <!-- Bento Grid (3 Cards) -->
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
