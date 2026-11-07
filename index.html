@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>ConnCT — Professional Networking for India</title>
 <meta property="og:title" content="ConnCT — Professional Networking for India">
-<meta property="og:description" content="The verified professional network for India's CAs, CS, CMAs, Advocates, and more.">
+<meta property="og:description" content="The verified professional network for India's CAs, CS, CMAs, Advocates, B.Com & MBA graduates, and more.">
 <meta property="og:image" content="https://connct.in/assets/logo.png">
-<meta name="description" content="ConnCT is the verified professional network built for India's Chartered Accountants, Company Secretaries, Cost & Management Accountants, Advocates, Insolvency Professionals, Registered Valuers, and Chartered Engineers.">
+<meta name="description" content="ConnCT is the verified professional network built for India's Chartered Accountants, Company Secretaries, Cost & Management Accountants, Advocates, Insolvency Professionals, Registered Valuers, Chartered Engineers, and B.Com/MBA graduates.">
 <link rel="canonical" href="https://connct.in/">
 <link rel="icon" href="/assets/logo.png">
 <meta name="theme-color" content="#ffffff" id="themeColorMeta">
@@ -19,7 +19,7 @@
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Android",
   "url": "https://connct.in/",
-  "description": "A verified professional network for Chartered Accountants, Company Secretaries, Cost & Management Accountants, Advocates and other Indian compliance professionals.",
+  "description": "A verified professional network for Chartered Accountants, Company Secretaries, Cost & Management Accountants, Advocates, B.Com/MBA graduates, and other Indian compliance and finance professionals.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
   "publisher": { "@type": "Organization", "name": "ConnCT", "url": "https://connct.in/" }
 }
@@ -210,6 +210,27 @@
   @media (max-width: 900px) { .accent-blob { display: none; } }
   body[data-stage="5"] .accent-blob { opacity: 0; }
   @media (prefers-reduced-motion: reduce) { .accent-blob { animation: none; } }
+
+  /* Scroll-reveal for each snap-section's content — the page already
+     scroll-snaps section by section, but the content itself just appeared
+     instantly with no entrance of its own. Fades/rises in once, the first
+     time a section's wrapper crosses the viewport (see the
+     IntersectionObserver below); never re-triggers on scrolling back up,
+     so it reads as an entrance, not a distracting repeat effect. */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,0.61,0.36,1), transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+  .reveal.revealed { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  /* Per-card stagger inside a revealed section's grid — each direct card
+     child lags slightly behind the one before it, rather than every card
+     in a row popping in simultaneously. */
+  .reveal.revealed > .grid > * { animation: reveal-rise 0.6s cubic-bezier(0.22,0.61,0.36,1) backwards; }
+  .reveal.revealed > .grid > *:nth-child(1) { animation-delay: 0.05s; }
+  .reveal.revealed > .grid > *:nth-child(2) { animation-delay: 0.15s; }
+  .reveal.revealed > .grid > *:nth-child(3) { animation-delay: 0.25s; }
+  .reveal.revealed > .grid > *:nth-child(4) { animation-delay: 0.35s; }
+  @keyframes reveal-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .reveal.revealed > .grid > * { animation: none; } }
 
   .progress {
     position: fixed;
@@ -548,7 +569,7 @@
 </section>
 <!-- HERO SECTION -->
 <section id="why-connct" class="snap-section w-full bg-surface py-space-2xl md:py-space-3xl overflow-hidden">
-<div class="max-w-[80rem] mx-auto px-gutter-desktop">
+<div class="max-w-[80rem] mx-auto px-gutter-desktop reveal">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
 <!-- Left Hero Content Column -->
 <div class="lg:col-span-7 flex flex-col gap-space-lg">
@@ -564,7 +585,7 @@
               Not just another self-reported title.
 </h1>
 <p class="font-headline-sm text-headline-sm text-on-surface-variant max-w-xl font-normal leading-relaxed">
-              Real verification for CAs, CS, CMAs, Advocates, and more — so you know exactly who you're connecting with, or hiring.
+              Real verification for CAs, CS, CMAs, Advocates, B.Com &amp; MBA graduates, and more — so you know exactly who you're connecting with, or hiring.
             </p>
 </div>
 <!-- Council Accreditation Pills -->
@@ -693,7 +714,7 @@
 <section class="w-full py-space-2xl relative overflow-hidden" style="background: linear-gradient(135deg, #001B47 0%, #002B66 45%, #0A3D8F 100%);">
 <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue-vibrant/20 rounded-full blur-3xl pointer-events-none"></div>
 <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-verified-teal/15 rounded-full blur-3xl pointer-events-none"></div>
-<div class="max-w-[80rem] mx-auto px-gutter-desktop relative z-10">
+<div class="max-w-[80rem] mx-auto px-gutter-desktop relative z-10 reveal">
 <div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
 <div class="glass-card-dark rounded-2xl p-space-lg flex flex-col gap-space-2xs text-center md:text-left">
 <span class="font-display-lg text-display-lg text-on-primary font-bold">Opt-In</span>
@@ -720,7 +741,7 @@
 </section>
 <!-- SECTION: CONNECT & GET HIRED -->
 <section id="network-and-hiring" class="snap-section w-full bg-surface-canvas py-space-lg lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
-<div class="max-w-[80rem] mx-auto px-gutter-desktop w-full flex flex-col gap-space-md">
+<div class="max-w-[80rem] mx-auto px-gutter-desktop w-full flex flex-col gap-space-md reveal">
 <!-- Section Header -- a plain single column wastes the right half of a
      wide screen with nothing beside a short heading; paired with a large
      decorative icon tile instead of a fabricated stat, so the space is
@@ -864,7 +885,7 @@
 </section>
 <!-- SECTION: COMPLIANCE, SIMPLIFIED (AI TAX, INSTANT CALC, DEADLINES) -->
 <section id="compliance-and-ai" class="snap-section w-full bg-surface py-space-lg lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
-<div class="max-w-[80rem] mx-auto px-gutter-desktop w-full flex flex-col gap-space-md">
+<div class="max-w-[80rem] mx-auto px-gutter-desktop w-full flex flex-col gap-space-md reveal">
 <!-- Section Title -->
 <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
 <div class="flex flex-col gap-space-xs max-w-2xl lg:max-w-none">
@@ -1032,7 +1053,7 @@
 </section>
 <!-- SECTION: VISIBILITY MEETS COMMUNITY -->
 <section id="community" class="snap-section w-full bg-surface-canvas py-space-lg lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
-<div class="max-w-[80rem] mx-auto px-gutter-desktop w-full flex flex-col gap-space-md">
+<div class="max-w-[80rem] mx-auto px-gutter-desktop w-full flex flex-col gap-space-md reveal">
 <!-- Section Header -->
 <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
 <div class="flex flex-col gap-space-xs max-w-2xl lg:max-w-none">
@@ -1161,7 +1182,7 @@
 <!-- Decorative background ambient shapes -->
 <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-brand-blue-vibrant/20 rounded-full blur-3xl pointer-events-none"></div>
 <div class="absolute -left-20 -top-20 w-96 h-96 bg-verified-teal/20 rounded-full blur-3xl pointer-events-none"></div>
-<div class="max-w-[80rem] mx-auto px-gutter-desktop relative z-10">
+<div class="max-w-[80rem] mx-auto px-gutter-desktop relative z-10 reveal">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
 <!-- CTA Copy -->
 <div class="lg:col-span-8 flex flex-col gap-space-md">
@@ -1293,7 +1314,7 @@
       computeTax();
     })();
   </script>
-</div></main><footer class="snap-section w-full bg-surface-container-low"><div class="max-w-[80rem] mx-auto px-gutter-desktop pt-space-3xl pb-space-2xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-2xl mb-space-2xl"><div class="lg:col-span-2 flex flex-col gap-space-md"><div class="flex items-center gap-space-xs"><img alt="ConnCT logo" class="h-8 w-auto object-contain" src="/assets/logo.png"/><span class="font-headline-md text-headline-md text-brand-navy-deep">Conn<span class="mirror-c">C</span>T</span><span class="px-space-xs py-space-2xs rounded-full bg-verified-teal-subtle text-verified-teal font-label-sm text-label-sm">Verified</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">India's first certified professional network engineered exclusively for Chartered Accountants, Company Secretaries, Cost &amp; Management Accountants, and Advocates.</p><div class="flex flex-col gap-space-xs mt-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Recognized Statutory Standards</span><div class="flex flex-wrap items-center gap-space-xs"><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">ICAI</span><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">ICSI</span><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">ICMAI</span><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">Bar Council</span></div></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Network</span><nav class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#network-and-hiring">Chartered Accountants</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#network-and-hiring">Company Secretaries</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#network-and-hiring">CMA Practitioners</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#network-and-hiring">Legal Advocates</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#community">Specialized Circles</a></nav></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Statutory &amp; Tools</span><nav class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#compliance-and-ai">GST &amp; Income Tax Deadlines</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#compliance-and-ai">MCA Compliance Tracker</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#compliance-and-ai">ConnCT AI Copilot</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#compliance-and-ai">Regulatory Gazette Feed</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#why-connct">COP Verification Hub</a></nav></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Compliance &amp; Legal</span><nav class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="/privacy-policy.html">Privacy &amp; DPDP Act</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="mailto:support@connct.in">Support &amp; Grievance</a></nav></div></div><div class="pt-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md bg-surface-container/50 p-space-md rounded-xl"><p class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left">ConnCT is an independent peer professional directory and practice intelligence platform. It is not affiliated directly with ICAI, ICSI, ICMAI, or the Bar Council of India. Council rules prohibiting professional solicitation and advertisement are rigorously respected.</p><p class="font-label-sm text-label-sm text-on-surface-variant shrink-0">© 2026 ConnCT. All rights reserved.</p></div></div></footer>
+</div></main><footer class="snap-section w-full bg-surface-container-low"><div class="max-w-[80rem] mx-auto px-gutter-desktop pt-space-3xl pb-space-2xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-2xl mb-space-2xl"><div class="lg:col-span-2 flex flex-col gap-space-md"><div class="flex items-center gap-space-xs"><img alt="ConnCT logo" class="h-8 w-auto object-contain" src="/assets/logo.png"/><span class="font-headline-md text-headline-md text-brand-navy-deep">Conn<span class="mirror-c">C</span>T</span><span class="px-space-xs py-space-2xs rounded-full bg-verified-teal-subtle text-verified-teal font-label-sm text-label-sm">Verified</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">India's first certified professional network engineered for Chartered Accountants, Company Secretaries, Cost &amp; Management Accountants, Advocates, and B.Com/MBA graduates.</p><div class="flex flex-col gap-space-xs mt-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Recognized Statutory Standards</span><div class="flex flex-wrap items-center gap-space-xs"><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">ICAI</span><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">ICSI</span><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">ICMAI</span><span class="px-space-xs py-space-2xs rounded bg-surface-card text-on-surface-variant font-label-sm text-label-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)]">Bar Council</span></div></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Network</span><nav class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#network-and-hiring">Chartered Accountants</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#network-and-hiring">Company Secretaries</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#network-and-hiring">CMA Practitioners</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#network-and-hiring">Legal Advocates</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#network-and-hiring">B.Com &amp; MBA Graduates</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#community">Specialized Circles</a></nav></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Statutory &amp; Tools</span><nav class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#compliance-and-ai">GST &amp; Income Tax Deadlines</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#compliance-and-ai">MCA Compliance Tracker</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#compliance-and-ai">ConnCT AI Copilot</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#compliance-and-ai">Regulatory Gazette Feed</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#why-connct">COP Verification Hub</a></nav></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Compliance &amp; Legal</span><nav class="flex flex-col gap-space-xs"><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="/privacy-policy.html">Privacy &amp; DPDP Act</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="mailto:support@connct.in">Support &amp; Grievance</a></nav></div></div><div class="pt-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md bg-surface-container/50 p-space-md rounded-xl"><p class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left">ConnCT is an independent peer professional directory and practice intelligence platform. It is not affiliated directly with ICAI, ICSI, ICMAI, or the Bar Council of India. Council rules prohibiting professional solicitation and advertisement are rigorously respected.</p><p class="font-label-sm text-label-sm text-on-surface-variant shrink-0">© 2026 ConnCT. All rights reserved.</p></div></div></footer>
   </div>
 
 <script>
@@ -1446,6 +1467,24 @@
     }
   }
   updateDynamicDates();
+
+  // Scroll-reveal — fades/rises each .reveal section in once, the first
+  // time it crosses the viewport (see the .reveal/.revealed CSS above).
+  // Skips entirely under prefers-reduced-motion, same as every other
+  // animation already on this page (the drifting blobs, the intro orb).
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.15});
+    document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('revealed'); });
+  }
 </script>
 
 </body>
